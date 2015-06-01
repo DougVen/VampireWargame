@@ -41,7 +41,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private GridPane tablero = new GridPane();
     private ImageView imageview;
-    private Image img = new Image(getClass().getResourceAsStream("peon.png"));
     private Image img2 = new Image(getClass().getResourceAsStream("yes.png"));
     private Image piso = new Image(getClass().getResourceAsStream("floor.png"));
     private Media sonido=new Media(getClass().getResource("sound.mp3").toString());
@@ -56,8 +55,7 @@ public class FXMLDocumentController implements Initializable {
     private Image muerterojo = new Image(getClass().getResourceAsStream("muerteroja.png"));
     private Image loborojo = new Image(getClass().getResourceAsStream("loborojo.png"));
     
-    
-    private ImageView peon = new ImageView(img);
+
     private ImageView blank = new ImageView(img2);
     private Button[][] botones = new Button[6][6];
     private int doctor,who, batman,superman,posx,posy;

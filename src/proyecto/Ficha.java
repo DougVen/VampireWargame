@@ -5,12 +5,19 @@
  */
 package proyecto;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 /**
  *
  * @author Alejandro
  */
 public abstract class Ficha {
     protected int ataque, vida, escudo;
+    protected Image img;
+    protected ImageView icon;
+    protected String color;
+
 //------------------SETS Y GETS--------------------------
     public int getAtaque() {
         return ataque;

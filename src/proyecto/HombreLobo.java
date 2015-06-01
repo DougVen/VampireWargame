@@ -5,13 +5,25 @@
  */
 package proyecto;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 /**
  *
  * @author Alejandro
  */
 public class HombreLobo extends Ficha{
 
-    HombreLobo(){
+    HombreLobo(String n){
+        color=n;
+        
+        if(n.equals("azul")){
+            img=new Image(getClass().getResourceAsStream("loboazul.png"));
+            
+        }else{
+            img=new Image(getClass().getResourceAsStream("loborojo.png"));
+        }
+        icon=new ImageView(img);  
         ataque= 5;
         vida= 5;
         escudo =2;

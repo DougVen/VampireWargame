@@ -5,13 +5,25 @@
  */
 package proyecto;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 /**
  *
  * @author Alejandro
  */
 public class Muerte extends Ficha{
 
-    Muerte(){
+    Muerte(String n){
+        color=n;
+        
+        if(n.equals("azul")){
+            img=new Image(getClass().getResourceAsStream("muerteazul.png"));
+            
+        }else{
+            img=new Image(getClass().getResourceAsStream("muerteroja.png"));
+        }
+        icon=new ImageView(img);  
         ataque= 4;
         vida= 3;
         escudo =1;
