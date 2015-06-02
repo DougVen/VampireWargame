@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 package PROYECTO;
+import java.io.File;
 import javafx.stage.Stage;
 import java.net.URL;
+import java.sql.Time;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -60,6 +63,9 @@ public class FXMLDocumentController implements Initializable {
     private Image piso = new Image(getClass().getResourceAsStream("floor.png"));
     private Media sonido=new Media(getClass().getResource("sound.mp3").toString());
     private Media son=new Media(getClass().getResource("stage.mp3").toString());
+    private File files=new File("access.txt");
+    private File files2= new File("special.txt");
+    
     //faltan los zombies
     //private Image zombieazul = new Image(getClass().getResourceAsStream("zombie.png"));
     private Image vampiroazul = new Image(getClass().getResourceAsStream("vampiroazul.png"));
@@ -93,19 +99,21 @@ public class FXMLDocumentController implements Initializable {
     }
     
  
+            
     public void Menu() throws Exception {
         
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Ataques.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
+            
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("ABC");
             stage.setScene(new Scene(root1));  
-            stage.show();
+            stage.showAndWait();
             
              
-    
+            
         
            
             
@@ -255,15 +263,38 @@ public class FXMLDocumentController implements Initializable {
                             if(play.tablero[who][doctor].getColor().equals(play.tablero[superman][batman].getColor())){
                                 
                             }else{
+                                
                             try {
-                                System.out.println("Menu");
                                 Menu();
+                               
+                                
+                                System.out.println("Menu");
+                                
+                                
+                               
+                                System.out.println("Exito");
+                                
                             } catch (Exception ex) {
-                                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-                            }}
+                                System.out.println("non so");
+                            }
+                           finally{
+                                if(files.exists()){
+                                    files.delete();
+                                }
+                                
+                                if(files2.exists()){
+                                    files2.delete();
+                                }
+                            }
+                            }
                         }
                     }      
-                }           
+                }          
+                
+                
+                
+                
+                
                 ult=tardis;    
                 batman= doctor;
                 superman= who;

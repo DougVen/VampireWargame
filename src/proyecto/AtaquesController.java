@@ -39,19 +39,22 @@ public class AtaquesController implements Initializable {
     }
     
     @FXML
-    public String Attack() throws IOException{
+    public void Attack() throws IOException{
         
         File file= new File("access.txt");
         file.createNewFile();
-        return "attack";
+        
+        
+        Cancel();
 
     }
     
     @FXML
-    public String SpecialAttack() throws IOException{
-        File file= new File("saccess.txt");
+    public void SpecialAttack() throws IOException{
+        File file= new File("special.txt");
         file.createNewFile();
-        return "sattack";
+        
+        Cancel();
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
