@@ -43,8 +43,6 @@ public class AtaquesController implements Initializable {
         
         File file= new File("access.txt");
         file.createNewFile();
-        
-        
         Cancel();
 
     }

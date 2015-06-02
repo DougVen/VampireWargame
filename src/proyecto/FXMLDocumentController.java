@@ -111,9 +111,9 @@ public class FXMLDocumentController implements Initializable {
             stage.setTitle("ABC");
             stage.setScene(new Scene(root1));  
             stage.showAndWait();
+       
             
              
-            
         
            
             
@@ -235,6 +235,7 @@ public class FXMLDocumentController implements Initializable {
                 play.Print();
                 doctor=getX(tardis);
                 who=getY(tardis);
+                boolean sonic=false;
                 
                 if(ult.getGraphic()!=((Node)blank)){
                     
@@ -261,12 +262,12 @@ public class FXMLDocumentController implements Initializable {
                         
                         if(botones[doctor][who].getGraphic()!=((Node)blank)){
                             if(play.tablero[who][doctor].getColor().equals(play.tablero[superman][batman].getColor())){
-                                
+                                 
                             }else{
                                 
                             try {
                                 Menu();
-                               
+                               sonic=true;
                                 
                                 System.out.println("Menu");
                                 
@@ -280,11 +281,14 @@ public class FXMLDocumentController implements Initializable {
                            finally{
                                 if(files.exists()){
                                     files.delete();
+                                    botones[doctor][who].disarm();
+                                    
                                     //Aqui alex ataque
                                 }
                                 
                                 if(files2.exists()){
                                     files2.delete();
+                                    
                                     //Aqui special attack alex
                                 }
                             }
@@ -300,6 +304,12 @@ public class FXMLDocumentController implements Initializable {
                 ult=tardis;    
                 batman= doctor;
                 superman= who;
+                if(sonic){
+                    System.out.println("lo apague");
+                    ult=new Button("", blank);
+                    tardis=ult;
+                    sonic=false;
+                }
             }              
         };   
 }
