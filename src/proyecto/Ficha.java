@@ -34,6 +34,10 @@ public abstract class Ficha {
     public ImageView getIcon() {
         return icon;
     }
+
+    public String getColor() {
+        return color;
+    }
     
     
 //--------------Funciones---------------------------------- 

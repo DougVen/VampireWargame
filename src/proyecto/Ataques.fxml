@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.45" fx:controller="proyecto.AtaquesController">
+   <children>
+      <Button fx:id="sattack" layoutX="255.0" layoutY="146.0" mnemonicParsing="false" text="Special Attack" />
+      <Button fx:id="attack" layoutX="274.0" layoutY="94.0" mnemonicParsing="false" onAction="#Attack" text="Attack" />
+      <Button fx:id="cancel" layoutX="274.0" layoutY="207.0" mnemonicParsing="false" onAction="#Cancel" text="Cancel" />
+   </children>
+</AnchorPane>

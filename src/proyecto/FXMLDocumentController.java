@@ -4,17 +4,22 @@
  * and open the template in the editor.
  */
 package PROYECTO;
-
+import javafx.stage.Stage;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -30,6 +35,9 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import sun.audio.AudioPlayer;
 import proyecto.LogicaVampire;
 import proyecto.HombreLobo;
@@ -44,30 +52,14 @@ import proyecto.Ficha;
 public class FXMLDocumentController implements Initializable {
       public LogicaVampire play= new LogicaVampire();
     
-       // pla.tablero[0][0]=new HombreLobo("rojo");
-        /*
-        botones[0][0].setGraphic(play.tablero[0][0].getIcon());
-        botones[0][5].setGraphic(play.tablero[0][5].getIcon());
-        botones[3][0].setGraphic(play.tablero[3][0].getIcon());
-        botones[3][5].setGraphic(play.tablero[3][5].getIcon());
- 
-        botones[1][0].setGraphic(play.tablero[1][0].getIcon());
-        botones[1][5].setGraphic(play.tablero[1][5].getIcon());
-        botones[4][0].setGraphic(play.tablero[4][0].getIcon());
-        botones[4][5].setGraphic(play.tablero[4][5].getIcon());
-        
-        botones[2][0].setGraphic(play.tablero[2][0].getIcon());
-        botones[2][5].setGraphic(play.tablero[2][5].getIcon());
-        botones[5][0].setGraphic(play.tablero[5][0].getIcon());
-        botones[5][5].setGraphic(play.tablero[5][5].getIcon());
-    */
+
     @FXML
     private GridPane tablero = new GridPane();
     private ImageView imageview;
     private Image img2 = new Image(getClass().getResourceAsStream("yes.png"));
     private Image piso = new Image(getClass().getResourceAsStream("floor.png"));
     private Media sonido=new Media(getClass().getResource("sound.mp3").toString());
-    private Media stage=new Media(getClass().getResource("stage.mp3").toString());
+    private Media son=new Media(getClass().getResource("stage.mp3").toString());
     //faltan los zombies
     //private Image zombieazul = new Image(getClass().getResourceAsStream("zombie.png"));
     private Image vampiroazul = new Image(getClass().getResourceAsStream("vampiroazul.png"));
@@ -99,6 +91,27 @@ public class FXMLDocumentController implements Initializable {
         if(botones[a][b].getGraphic()==null)
             System.out.println("3");
     }
+    
+ 
+    public void Menu() throws Exception {
+        
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Ataques.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("ABC");
+            stage.setScene(new Scene(root1));  
+            stage.show();
+            
+             
+    
+        
+           
+            
+    
+    }
+    
     
     public int getX(Button b){
         for (int i = 0; i <botones.length; i++) {
@@ -137,7 +150,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
-        playMedia(stage);
+        playMedia(son);
         tablero.getColumnConstraints().add(new ColumnConstraints(20)); // column 0 is 100 wide
         tablero.getRowConstraints().add(new RowConstraints(-60));
      
@@ -226,7 +239,7 @@ public class FXMLDocumentController implements Initializable {
                         posy= posy*(-1);
                     
                     if((posx <=1)&& (posy <=1)){
-                        System.out.println("si");
+       
                         
                         if(botones[doctor][who].getGraphic()==((Node)blank)){
                             
@@ -236,6 +249,18 @@ public class FXMLDocumentController implements Initializable {
                             ult.setGraphic(((Node)blank));
                             play.Print();
                             return;
+                        }
+                        
+                        if(botones[doctor][who].getGraphic()!=((Node)blank)){
+                            if(play.tablero[who][doctor].getColor().equals(play.tablero[superman][batman].getColor())){
+                                
+                            }else{
+                            try {
+                                System.out.println("Menu");
+                                Menu();
+                            } catch (Exception ex) {
+                                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                            }}
                         }
                     }      
                 }           

@@ -17,6 +17,7 @@ public class LogicaVampire {
     protected int turno=1;
     public Ficha[][] tablero;
 
+
     public LogicaVampire() {
         tablero=new Ficha[6][6];
      
