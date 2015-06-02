@@ -31,13 +31,36 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import sun.audio.AudioPlayer;
-
+import proyecto.LogicaVampire;
+import proyecto.HombreLobo;
+import proyecto.Muerte;
+import proyecto.Vampiro;
+import proyecto.Ficha;
+        
 /**
  *
  * @author jose
  */
 public class FXMLDocumentController implements Initializable {
+      public LogicaVampire play= new LogicaVampire();
     
+       // pla.tablero[0][0]=new HombreLobo("rojo");
+        /*
+        botones[0][0].setGraphic(play.tablero[0][0].getIcon());
+        botones[0][5].setGraphic(play.tablero[0][5].getIcon());
+        botones[3][0].setGraphic(play.tablero[3][0].getIcon());
+        botones[3][5].setGraphic(play.tablero[3][5].getIcon());
+ 
+        botones[1][0].setGraphic(play.tablero[1][0].getIcon());
+        botones[1][5].setGraphic(play.tablero[1][5].getIcon());
+        botones[4][0].setGraphic(play.tablero[4][0].getIcon());
+        botones[4][5].setGraphic(play.tablero[4][5].getIcon());
+        
+        botones[2][0].setGraphic(play.tablero[2][0].getIcon());
+        botones[2][5].setGraphic(play.tablero[2][5].getIcon());
+        botones[5][0].setGraphic(play.tablero[5][0].getIcon());
+        botones[5][5].setGraphic(play.tablero[5][5].getIcon());
+    */
     @FXML
     private GridPane tablero = new GridPane();
     private ImageView imageview;
@@ -138,22 +161,42 @@ public class FXMLDocumentController implements Initializable {
             }
             
                 
+           
         }
         
-        botones[0][0].setGraphic(new ImageView(loborojo));
-        botones[0][5].setGraphic(new ImageView(loboazul));
-        botones[3][0].setGraphic(new ImageView(muerterojo));
-        botones[3][5].setGraphic(new ImageView(muerteazul));
- 
-        botones[1][0].setGraphic(new ImageView(vampirorojo));
-        botones[1][5].setGraphic(new ImageView(vampiroazul));
-        botones[4][0].setGraphic(new ImageView(vampirorojo));
-        botones[4][5].setGraphic(new ImageView(vampiroazul));
+        play.tablero[0][0]= new HombreLobo("rojo");
+        play.tablero[5][0]= new HombreLobo("azul");
+        play.tablero[0][3]= new Muerte("rojo");
+        play.tablero[5][3]= new Muerte("azul");
         
-        botones[2][0].setGraphic(new ImageView(muerterojo));
-        botones[2][5].setGraphic(new ImageView(muerteazul));
-        botones[5][0].setGraphic(new ImageView(loborojo));
-        botones[5][5].setGraphic(new ImageView(loboazul));
+        play.tablero[0][1]= new Vampiro("rojo");
+        play.tablero[5][1]= new Vampiro("azul");
+        play.tablero[0][4]= new Vampiro("rojo");
+        play.tablero[5][4]= new Vampiro("azul");
+        
+        play.tablero[0][2]= new Muerte("rojo");
+        play.tablero[5][2]= new Muerte("azul");
+        play.tablero[0][5]= new HombreLobo("rojo");
+        play.tablero[5][5]= new HombreLobo("azul");
+        
+        botones[0][0].setGraphic(play.tablero[0][0].getIcon());
+        botones[0][5].setGraphic(play.tablero[5][0].getIcon());
+        botones[3][0].setGraphic(play.tablero[0][3].getIcon());
+        botones[3][5].setGraphic(play.tablero[5][3].getIcon());
+ 
+        botones[1][0].setGraphic(play.tablero[0][1].getIcon());
+        botones[1][5].setGraphic(play.tablero[5][1].getIcon());
+        botones[4][0].setGraphic(play.tablero[0][4].getIcon());
+        botones[4][5].setGraphic(play.tablero[5][4].getIcon());
+        
+        botones[2][0].setGraphic(play.tablero[0][2].getIcon());
+        botones[2][5].setGraphic(play.tablero[5][2].getIcon());
+        botones[5][0].setGraphic(play.tablero[0][5].getIcon());
+        botones[5][5].setGraphic(play.tablero[5][5].getIcon());
+        
+        
+        
+        
         
         for (int i = 0; i < 6; i++) {
                 botones[i][0].setId("Peon:"+i);
@@ -168,11 +211,12 @@ public class FXMLDocumentController implements Initializable {
          
                 Object source = event.getTarget();
                 Button tardis=(Button)source;
-                
+                play.Print();
                 doctor=getX(tardis);
                 who=getY(tardis);
-
+                
                 if(ult.getGraphic()!=((Node)blank)){
+                    
                     playMedia(sonido);
                     posx=batman- doctor;
                     posy= superman-who;
@@ -183,10 +227,14 @@ public class FXMLDocumentController implements Initializable {
                     
                     if((posx <=1)&& (posy <=1)){
                         System.out.println("si");
-                
+                        
                         if(botones[doctor][who].getGraphic()==((Node)blank)){
+                            
                             botones[doctor][who].setGraphic(ult.getGraphic());
+                            play.tablero[who][doctor]=play.tablero[superman][batman];
+                            play.tablero[superman][batman]=null;
                             ult.setGraphic(((Node)blank));
+                            play.Print();
                             return;
                         }
                     }      

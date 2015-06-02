@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 public class Vampiro extends Ficha{
     
     public Vampiro(String n){
+        test="V";
         color=n;
         
         if(n.equals("azul")){

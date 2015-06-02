@@ -14,7 +14,8 @@ import javafx.scene.image.ImageView;
  */
 public class HombreLobo extends Ficha{
 
-    HombreLobo(String n){
+    public HombreLobo(String n){
+        test="H";
         color=n;
         
         if(n.equals("azul")){
@@ -28,6 +29,7 @@ public class HombreLobo extends Ficha{
         vida= 5;
         escudo =2;
     }
+    
     
     
     @Override

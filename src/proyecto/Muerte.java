@@ -14,7 +14,8 @@ import javafx.scene.image.ImageView;
  */
 public class Muerte extends Ficha{
 
-    Muerte(String n){
+   public Muerte(String n){
+       test="M";
         color=n;
         
         if(n.equals("azul")){
