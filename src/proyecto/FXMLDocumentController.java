@@ -280,10 +280,12 @@ public class FXMLDocumentController implements Initializable {
                            finally{
                                 if(files.exists()){
                                     files.delete();
+                                    //Aqui alex ataque
                                 }
                                 
                                 if(files2.exists()){
                                     files2.delete();
+                                    //Aqui special attack alex
                                 }
                             }
                             }
