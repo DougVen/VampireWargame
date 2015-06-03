@@ -17,6 +17,7 @@ public abstract class Ficha {
     protected Image img;
     public ImageView icon;
     protected String color,test=" ";
+    
 
 //------------------SETS Y GETS--------------------------
     public int getAtaque() {
