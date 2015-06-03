@@ -321,7 +321,7 @@ public class FXMLDocumentController implements Initializable {
                                 
                                 if(files2.exists()){
                                     files2.delete();
-                                    play.tablero[doctor][who].ataqueEspecial();
+                                    play.tablero[who][doctor].ataqueEspecial();
                                     
                                     //Aqui special attack alex
                                 }
