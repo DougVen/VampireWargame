@@ -284,8 +284,8 @@ public class FXMLDocumentController implements Initializable {
                                          
                                          int ataque= play.tablero[superman][batman].getAtaque();
                                          
-                                         int life=play.tablero[doctor][who].getVida();
-                                         int escudo=play.tablero[doctor][who].getEscudo();
+                                         int life=play.tablero[who][doctor].getVida();
+                                         int escudo=play.tablero[who][doctor].getEscudo();
                                          
                                           System.out.println("Vida antes: " + life);
                                           System.out.println("Escudo antes: " + escudo);
@@ -303,17 +303,17 @@ public class FXMLDocumentController implements Initializable {
                                           life= life- ataque;
                                           
                                           //setear las nuevas vida y escudo
-                                          play.tablero[doctor][who].setEscudo(escudo);
-                                          play.tablero[doctor][who].setVida(life);
+                                          play.tablero[who][doctor].setEscudo(escudo);
+                                          play.tablero[who][doctor].setVida(life);
                                           
                                           System.out.println("Vida despues: " + life);
                                           System.out.println("Escudo despues: " + escudo);
                                           System.out.println("Ataque despues: " + ataque);
                                           System.out.println("--------------");
-                                          System.out.println("Escudo seteado: "+ play.tablero[doctor][who].getEscudo());
-                                          System.out.println("Vida seteado: "+ play.tablero[doctor][who].getVida());
+                                          System.out.println("Escudo seteado: "+ play.tablero[who][doctor].getEscudo());
+                                          System.out.println("Vida seteado: "+ play.tablero[who][doctor].getVida());
                                          
-                                          if(play.tablero[doctor][who].getVida()<=0){
+                                          if(play.tablero[who][doctor].getVida()<=0){
                                               botones[doctor][who].setGraphic((Node)blank);
                                           }
                                           
