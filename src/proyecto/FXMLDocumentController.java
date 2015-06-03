@@ -279,15 +279,53 @@ public class FXMLDocumentController implements Initializable {
                                       if(files.exists()){
                                          files.delete();
                                          botones[doctor][who].disarm();
-                                    
+                                         
                                     //Aqui alex ataque
+                                         
+                                         int ataque= play.tablero[superman][batman].getAtaque();
+                                         
+                                         int life=play.tablero[doctor][who].getVida();
+                                         int escudo=play.tablero[doctor][who].getEscudo();
+                                         
+                                          System.out.println("Vida antes: " + life);
+                                          System.out.println("Escudo antes: " + escudo);
+                                          System.out.println("Ataque antes: " + ataque);
+                                          
+                                          if(ataque>escudo){
+                                              ataque= ataque-escudo;
+                                              escudo=0;
+                                          }
+                                          else{
+                                              escudo= escudo-ataque;
+                                              ataque=0;
+                                          }
+                                          
+                                          life= life- ataque;
+                                          
+                                          //setear las nuevas vida y escudo
+                                          play.tablero[doctor][who].setEscudo(escudo);
+                                          play.tablero[doctor][who].setVida(life);
+                                          
+                                          System.out.println("Vida despues: " + life);
+                                          System.out.println("Escudo despues: " + escudo);
+                                          System.out.println("Ataque despues: " + ataque);
+                                          System.out.println("--------------");
+                                          System.out.println("Escudo seteado: "+ play.tablero[doctor][who].getEscudo());
+                                          System.out.println("Vida seteado: "+ play.tablero[doctor][who].getVida());
+                                         
+                                          if(play.tablero[doctor][who].getVida()<=0){
+                                              botones[doctor][who].setGraphic((Node)blank);
+                                          }
+                                          
                                    }
                                 
                                 if(files2.exists()){
                                     files2.delete();
+                                    play.tablero[doctor][who].ataqueEspecial();
                                     
                                     //Aqui special attack alex
                                 }
+                                
                             }
                             }
                         }
@@ -304,7 +342,6 @@ public class FXMLDocumentController implements Initializable {
                 if(sonic){
                     System.out.println("lo apague");
                     ult=new Button("", blank);
-                    tardis=ult;
                     sonic=false;
                 }
             }              

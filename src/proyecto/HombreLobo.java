@@ -39,7 +39,7 @@ public class HombreLobo extends Ficha{
 
     @Override
     public void ataqueEspecial() {
-        
+        System.out.println("HOOOOOLA");
     }
     
 }

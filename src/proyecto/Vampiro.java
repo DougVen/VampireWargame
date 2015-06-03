@@ -38,7 +38,7 @@ public class Vampiro extends Ficha{
 
     @Override
     public void ataqueEspecial() {
-      
+        System.out.println("HOOOOOLA");
     }
     
 }

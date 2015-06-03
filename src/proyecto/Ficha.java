@@ -30,6 +30,14 @@ public abstract class Ficha {
     public int getEscudo() {
         return escudo;
     }
+    
+    public void setEscudo(int esc) {
+        escudo= esc;
+    }
+    
+    public void setVida(int vida) {
+        this.vida=vida;
+    }
 
     public ImageView getIcon() {
         return icon;
