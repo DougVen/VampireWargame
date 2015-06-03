@@ -265,26 +265,23 @@ public class FXMLDocumentController implements Initializable {
                                  
                             }else{
                                 
-                            try {
-                                Menu();
-                               sonic=true;
+                                 try {
+                                  Menu();
+                                  sonic=true;
                                 
-                                System.out.println("Menu");
+                                   System.out.println("Menu");
+                                   System.out.println("Exito");
                                 
-                                
-                               
-                                System.out.println("Exito");
-                                
-                            } catch (Exception ex) {
-                                System.out.println("non so");
-                            }
-                           finally{
-                                if(files.exists()){
-                                    files.delete();
-                                    botones[doctor][who].disarm();
+                                  } catch (Exception ex) {
+                                     System.out.println("non so");
+                                  }
+                                 finally{
+                                      if(files.exists()){
+                                         files.delete();
+                                         botones[doctor][who].disarm();
                                     
                                     //Aqui alex ataque
-                                }
+                                   }
                                 
                                 if(files2.exists()){
                                     files2.delete();
