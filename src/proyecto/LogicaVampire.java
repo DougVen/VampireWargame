@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
  * @author usuario
  */
 public class LogicaVampire {
-    protected int turno=1;
+    public int turno=1;
     public Ficha[][] tablero;
 
 
