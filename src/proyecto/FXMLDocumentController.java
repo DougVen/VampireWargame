@@ -172,8 +172,6 @@ public class FXMLDocumentController implements Initializable {
                 }
             }
             
-                
-           
         }
         
         play.tablero[0][0]= new HombreLobo("rojo");
@@ -219,7 +217,7 @@ public class FXMLDocumentController implements Initializable {
 EventHandler mover= new EventHandler()  {
 @Override
     public void handle(Event event) {
-         
+     
     Object source = event.getTarget();
     Button tardis=(Button)source;
     play.Print();
@@ -228,8 +226,12 @@ EventHandler mover= new EventHandler()  {
     boolean sonic=false;
                 
 
-    if(ult.getGraphic()!=((Node)blank)){
-
+    if(tardis.getGraphic()!=((Node)blank)){
+        try {
+            Menu();
+        } catch (Exception ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         playMedia(sonido);
         posx=batman- doctor;
         posy= superman-who;
@@ -252,17 +254,17 @@ EventHandler mover= new EventHandler()  {
             if(botones[doctor][who].getGraphic()!=((Node)blank)){
                 if(play.tablero[who][doctor].getColor().equals(play.tablero[superman][batman].getColor())){
                 }else{
-
-                     try {
-                      Menu();
+                    
+                    try {
+                    
                       sonic=true;
                        System.out.println("Menu");
                        System.out.println("Exito");
 
-                     } catch (Exception ex) {
+                    } catch (Exception ex) {
                          System.out.println("non so");
                         }
-                     finally{
+                    finally{
                           if(files.exists()){
                              files.delete();
                              botones[doctor][who].disarm();
