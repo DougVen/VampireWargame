@@ -104,11 +104,12 @@ public class FXMLDocumentController implements Initializable {
 
         if((posx <=1)&& (posy <=1)){
         botones[doctor][who].setGraphic(botones[batman][superman].getGraphic());
-         ult.setGraphic(((Node)blank));
+         botones[batman][superman].setGraphic(((Node)blank));
+         
                 play.tablero[who][doctor]=play.tablero[superman][batman];
                 play.tablero[superman][batman]=null;
-                
                 play.Print();
+                
                 
         }
         return true;
