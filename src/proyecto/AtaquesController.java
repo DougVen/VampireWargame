@@ -54,6 +54,15 @@ public class AtaquesController implements Initializable {
         
         Cancel();
     }
+    
+    @FXML
+    public void Mover() throws IOException {
+        File file= new File("mover.txt");
+        file.createNewFile();
+        Cancel();
+    }
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

@@ -65,7 +65,7 @@ public class FXMLDocumentController implements Initializable {
     private Media son=new Media(getClass().getResource("stage.mp3").toString());
     private File files=new File("access.txt");
     private File files2= new File("special.txt");
-    
+    private File files3= new File("mover.txt");
     //faltan los zombies
     //private Image zombieazul = new Image(getClass().getResourceAsStream("zombie.png"));
     private Image vampiroazul = new Image(getClass().getResourceAsStream("vampiroazul.png"));
@@ -95,7 +95,19 @@ public class FXMLDocumentController implements Initializable {
             System.out.println("3");
     }
     
- 
+    public void Mover(){
+        if(posx<0)
+            posx=posx *(-1);
+        if(posy<0)
+            posy= posy*(-1);
+
+        if((posx <=1)&& (posy <=1)){
+        botones[doctor][who].setGraphic(ult.getGraphic());
+                play.tablero[who][doctor]=play.tablero[superman][batman];
+                play.tablero[superman][batman]=null;
+                ult.setGraphic(((Node)blank));
+                play.Print();}
+    }
             
     public void Menu() throws Exception {
         
@@ -229,24 +241,22 @@ EventHandler mover= new EventHandler()  {
                 
 
     if(ult.getGraphic()!=((Node)blank)){
-
+        try {
+            Menu();
+        } catch (Exception ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         playMedia(sonido);
         posx=batman- doctor;
         posy= superman-who;
-        if(posx<0)
-            posx=posx *(-1);
-        if(posy<0)
-            posy= posy*(-1);
-
-        if((posx <=1)&& (posy <=1)){
+        
 
             if(botones[doctor][who].getGraphic()==((Node)blank)){
-
-                botones[doctor][who].setGraphic(ult.getGraphic());
-                play.tablero[who][doctor]=play.tablero[superman][batman];
-                play.tablero[superman][batman]=null;
-                ult.setGraphic(((Node)blank));
-                play.Print();
+                if(files3.exists()){
+                    Mover();
+                    files3.delete();
+                }
+                
                 return;
             }
             if(botones[doctor][who].getGraphic()!=((Node)blank)){
@@ -317,7 +327,7 @@ EventHandler mover= new EventHandler()  {
                         }   
                 }
             }
-        }      
+              
         
         //parte del special del lobo
         
