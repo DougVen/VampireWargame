@@ -40,7 +40,7 @@ public class Vampiro extends Ficha{
     }
 
     @Override
-    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button tardis, Button ult,  boolean ok) {
+    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button tardis, Button ult) {
         
         int a= getX(tardis,bu);
         int b= getY(tardis,bu);

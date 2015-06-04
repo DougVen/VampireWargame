@@ -53,18 +53,18 @@ public class HombreLobo extends Ficha{
     }
 
 
-    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button tardis, Button ult, boolean ok) {
+    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button tardis, Button ult) {
         System.out.println("LOBO");
-        ok= true;
+        
         //who = a  // doctor= b// superman= c// batman= d
-        /*
+        
         int a= getX(tardis,bu); //doctor
         int b= getY(tardis,bu);// who
         
         int c= getX(ult,bu);// superman
         int d= getY(ult,bu);// batman
-        */
         
+        x.tablero[c][d].setTest("HH");
             //---------------------------------------
             /*
             if(ult.getGraphic()!=((Node)blank)){

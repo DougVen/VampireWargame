@@ -55,6 +55,12 @@ public abstract class Ficha {
     public String getTest() {
         return test;
     }
+
+    public void setTest(String test) {
+        this.test = test;
+    }
+    
+    
     
     public int getX(Button b, Button[][] bu){
         int doctor=0;
@@ -83,6 +89,6 @@ public abstract class Ficha {
 //--------------Funciones---------------------------------- 
     public abstract void mover();
     
-    public abstract void ataqueEspecial(LogicaVampire x,Button[][] bu, Button bu2, Button bu3,  boolean ok);
+    public abstract void ataqueEspecial(LogicaVampire x,Button[][] bu, Button bu2, Button bu3);
     
 }

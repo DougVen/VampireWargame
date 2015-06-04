@@ -84,9 +84,6 @@ public class FXMLDocumentController implements Initializable {
     
     
     
-    
-    
-    
     @FXML
     private void handleButtonAction(ActionEvent event) {
         
@@ -229,9 +226,8 @@ EventHandler mover= new EventHandler()  {
     doctor=getX(tardis);
     who=getY(tardis);
     boolean sonic=false;
-    boolean ok= false;
                 
-    
+
     if(ult.getGraphic()!=((Node)blank)){
 
         playMedia(sonido);
@@ -312,7 +308,7 @@ EventHandler mover= new EventHandler()  {
                             if(files2.exists()){
                                 files2.delete();
                                 //if(play.tablero[who][doctor].getTest().equals("H")){
-                                play.tablero[superman][batman].ataqueEspecial(play,botones,tardis,ult,ok);
+                                play.tablero[superman][batman].ataqueEspecial(play,botones,tardis,ult);
                                 if(play.tablero[who][doctor].getVida()<=0){
                                    botones[doctor][who].setGraphic((Node)blank);
                                 }
@@ -325,16 +321,43 @@ EventHandler mover= new EventHandler()  {
         
         //parte del special del lobo
         
-    } 
-
+    }
     ult=tardis;    
     batman= doctor;
     superman= who;
+    //no me funciona el special del lobo..
+                /*
+                                if(play.tablero[superman][batman].getTest().equals("H")){
+                                    System.out.println("plss");
+                                    if(ult.getGraphic()!=((Node)blank)){
+                                    posx=batman- doctor;
+                                    posy= superman-who;
+                                    if(posx<0)
+                                        posx=posx *(-1);
+                                    if(posy<0)
+                                        posy= posy*(-1);
+
+                                    if((posx <=2)&& (posy <=2)){
+
+                                        if(botones[doctor][who].getGraphic()==((Node)blank)){
+
+                                            botones[doctor][who].setGraphic(ult.getGraphic());
+                                            play.tablero[who][doctor]=play.tablero[superman][batman];
+                                            play.tablero[superman][batman]=null;
+                                            ult.setGraphic(((Node)blank));
+                                            play.Print();
+                                            return;
+                                        }
+                                    }
+                                    }
+                                    System.out.println("falso baby");
+                                }
+                */
     if(sonic){
         System.out.println("lo apague");
         ult=new Button("", blank);
         sonic=false;
     }
-    }              
-};   
+    }
+};
 }

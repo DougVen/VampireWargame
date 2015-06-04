@@ -33,7 +33,7 @@ public class Zombie extends Ficha {
     }
     
     @Override
-    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button bu2, Button bu3, boolean ok) {
+    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button bu2, Button bu3) {
         
     }
 

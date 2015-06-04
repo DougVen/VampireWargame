@@ -39,7 +39,7 @@ public class Muerte extends Ficha{
     }
 
     @Override
-    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button tardis, Button ult,  boolean ok) {
+    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button tardis, Button ult) {
        System.out.println("Soy Muerte");
     }
     
