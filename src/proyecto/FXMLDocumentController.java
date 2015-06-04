@@ -66,6 +66,7 @@ public class FXMLDocumentController implements Initializable {
     private File files=new File("access.txt");
     private File files2= new File("special.txt");
     private File files3= new File("mover.txt");
+    private File close=new File("close.txt");
     //faltan los zombies
     //private Image zombieazul = new Image(getClass().getResourceAsStream("zombie.png"));
     private Image vampiroazul = new Image(getClass().getResourceAsStream("vampiroazul.png"));
@@ -95,7 +96,7 @@ public class FXMLDocumentController implements Initializable {
             System.out.println("3");
     }
     
-    public void Mover(){
+    public boolean Mover(){
         if(posx<0)
             posx=posx *(-1);
         if(posy<0)
@@ -106,7 +107,10 @@ public class FXMLDocumentController implements Initializable {
                 play.tablero[who][doctor]=play.tablero[superman][batman];
                 play.tablero[superman][batman]=null;
                 ult.setGraphic(((Node)blank));
-                play.Print();}
+                play.Print();
+                
+        }
+        return true;
     }
             
     public void Menu() throws Exception {
@@ -241,8 +245,16 @@ EventHandler mover= new EventHandler()  {
                 
 
     if(ult.getGraphic()!=((Node)blank)){
+        System.out.println("si");
         try {
             Menu();
+            if(close.exists()){
+                                close.delete();
+                                ult=new Button("", blank);
+                                System.out.println("yay");
+                                
+                            }
+            sonic=true;
         } catch (Exception ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -254,6 +266,11 @@ EventHandler mover= new EventHandler()  {
             if(botones[doctor][who].getGraphic()==((Node)blank)){
                 if(files3.exists()){
                     Mover();
+                    
+                    System.out.println("me movi");
+                   if(Mover()){
+                       ult=new Button("", blank);
+                   }
                     files3.delete();
                 }
                 
@@ -264,8 +281,8 @@ EventHandler mover= new EventHandler()  {
                 }else{
 
                      try {
-                      Menu();
-                      sonic=true;
+          
+                      
                        System.out.println("Menu");
                        System.out.println("Exito");
 
@@ -273,6 +290,8 @@ EventHandler mover= new EventHandler()  {
                          System.out.println("non so");
                         }
                      finally{
+                         
+                         
                           if(files.exists()){
                              files.delete();
                              botones[doctor][who].disarm();
@@ -324,6 +343,8 @@ EventHandler mover= new EventHandler()  {
                                 }
                                 //Aqui special attack alex
                             }
+                            
+                            
                         }   
                 }
             }

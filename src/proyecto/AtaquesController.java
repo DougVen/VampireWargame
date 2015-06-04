@@ -32,8 +32,10 @@ public class AtaquesController implements Initializable {
     Button attack,cancel,sattack;
     LogicaVampire t=new LogicaVampire();
     @FXML
-    private void Cancel(){
+    private void Cancel() throws IOException{
         Stage stage = (Stage) cancel.getScene().getWindow();
+        File close=new File("close.txt");
+        close.createNewFile();
     // do what you have to do
     stage.close();
     }
@@ -58,6 +60,7 @@ public class AtaquesController implements Initializable {
     @FXML
     public void Mover() throws IOException {
         File file= new File("mover.txt");
+        System.out.println("mover");
         file.createNewFile();
         Cancel();
     }

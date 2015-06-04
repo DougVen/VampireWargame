@@ -4,10 +4,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="190.0" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.AtaquesController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="232.0" prefWidth="204.0" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.AtaquesController">
    <children>
-      <Button fx:id="sattack" layoutX="50.0" layoutY="95.0" mnemonicParsing="false" onAction="#SpecialAttack" text="Special Attack" />
-      <Button fx:id="attack" layoutX="70.0" layoutY="46.0" mnemonicParsing="false" onAction="#Attack" text="Attack" />
+      <Button fx:id="sattack" layoutX="50.0" layoutY="109.0" mnemonicParsing="false" onAction="#SpecialAttack" text="Special Attack" />
+      <Button fx:id="attack" layoutX="71.0" layoutY="68.0" mnemonicParsing="false" onAction="#Attack" text="Attack" />
       <Button fx:id="cancel" layoutX="69.0" layoutY="154.0" mnemonicParsing="false" onAction="#Cancel" text="Cancel" />
+      <Button fx:id="mover" layoutX="70.0" layoutY="30.0" mnemonicParsing="false" onAction="#Mover" text="Mover" />
    </children>
 </AnchorPane>
