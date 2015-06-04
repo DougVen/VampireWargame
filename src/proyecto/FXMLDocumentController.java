@@ -103,10 +103,11 @@ public class FXMLDocumentController implements Initializable {
             posy= posy*(-1);
 
         if((posx <=1)&& (posy <=1)){
-        botones[doctor][who].setGraphic(ult.getGraphic());
+        botones[doctor][who].setGraphic(botones[batman][superman].getGraphic());
+         ult.setGraphic(((Node)blank));
                 play.tablero[who][doctor]=play.tablero[superman][batman];
                 play.tablero[superman][batman]=null;
-                ult.setGraphic(((Node)blank));
+                
                 play.Print();
                 
         }
@@ -241,11 +242,10 @@ EventHandler mover= new EventHandler()  {
     play.Print();
     doctor=getX(tardis);
     who=getY(tardis);
-    boolean sonic=false;
+  
                 
 
     if(ult.getGraphic()!=((Node)blank)){
-        System.out.println("si");
         try {
             Menu();
             if(close.exists()){
@@ -254,7 +254,7 @@ EventHandler mover= new EventHandler()  {
                                 System.out.println("yay");
                                 
                             }
-            sonic=true;
+      
         } catch (Exception ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -265,10 +265,8 @@ EventHandler mover= new EventHandler()  {
 
             if(botones[doctor][who].getGraphic()==((Node)blank)){
                 if(files3.exists()){
-                    Mover();
-                    
-                    System.out.println("me movi");
                    if(Mover()){
+                       System.out.println("me movi");
                        ult=new Button("", blank);
                    }
                     files3.delete();
@@ -384,11 +382,7 @@ EventHandler mover= new EventHandler()  {
                                     System.out.println("falso baby");
                                 }
                 */
-    if(sonic){
-        System.out.println("lo apague");
-        ult=new Button("", blank);
-        sonic=false;
-    }
+
     }
 };
 }
