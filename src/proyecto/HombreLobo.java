@@ -61,38 +61,31 @@ public class HombreLobo extends Ficha{
         int a= getX(tardis,bu); //doctor
         int b= getY(tardis,bu);// who
         
-        int c= getX(ult,bu);// superman
-        int d= getY(ult,bu);// batman
+        int c= getX(ult,bu);// batman
+        int d= getY(ult,bu);// superman
         
-        x.tablero[c][d].setTest("HH");
-        System.out.println(x.tablero[c][d].getTest());
             //---------------------------------------
-            /*
-            if(ult.getGraphic()!=((Node)blank)){
-                int posx= d- a;
-                int posy= c-b;
+           
+                System.out.println("HOLIS");
+                int posx= a-c;
+                int posy= b-d;
                 if(posx<0)
                     posx=posx *(-1);
                 if(posy<0)
                     posy= posy*(-1);
             
                 if((posx <=2)&& (posy <=2)){
-
-                    bu[c][d].setOnAction(mover);
+                    System.out.println("HOLISSSSSSSS");
                     
-                    if(bu[b][a].getGraphic()!=((Node)blank)){
-
-                     bu[b][a].setGraphic(ult.getGraphic());
-                     x.tablero[b][a]=x.tablero[d][c];
-                     x.tablero[d][c]=null;
-                     ult.setGraphic(((Node)blank));
-                     x.Print();
-                     return;
-                    }
-                            
+                    bu[a][b].setGraphic(bu[c][d].getGraphic());
+                    bu[c][d].setGraphic(((Node)blank));
+                    x.tablero[a][b]=x.tablero[d][c];
+                    x.tablero[c][d]=null;
+                    x.Print();
+                    
                 }
-            }
-                   */        
+            
+                           
     }
                     
 }

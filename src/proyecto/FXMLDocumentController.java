@@ -104,11 +104,10 @@ public class FXMLDocumentController implements Initializable {
 
         if((posx <=1)&& (posy <=1)){
         botones[doctor][who].setGraphic(botones[batman][superman].getGraphic());
-         ult.setGraphic(((Node)blank));
-                play.tablero[who][doctor]=play.tablero[superman][batman];
-                play.tablero[superman][batman]=null;
-                
-                play.Print();
+        botones[batman][superman].setGraphic(((Node)blank));
+        play.tablero[who][doctor]=play.tablero[superman][batman];
+        play.tablero[superman][batman]=null;      
+        play.Print();
                 
         }
         return true;
@@ -272,10 +271,17 @@ EventHandler mover= new EventHandler()  {
                     files3.delete();
                 }
                 
+                if(files2.exists()){
+                                files2.delete();
+                                System.out.println("Ataque SPECIAL");
+                                play.tablero[superman][batman].ataqueEspecial(play,botones,tardis,ult);
+                    }
+                
                 return;
             }
             if(botones[doctor][who].getGraphic()!=((Node)blank)){
                 if(play.tablero[who][doctor].getColor().equals(play.tablero[superman][batman].getColor())){
+                    
                 }else{
 
                      try {
@@ -334,6 +340,7 @@ EventHandler mover= new EventHandler()  {
 
                             if(files2.exists()){
                                 files2.delete();
+                                System.out.println("Ataque SPECIAL");
                                 //if(play.tablero[who][doctor].getTest().equals("H")){
                                 play.tablero[superman][batman].ataqueEspecial(play,botones,tardis,ult);
                                 if(play.tablero[who][doctor].getVida()<=0){
