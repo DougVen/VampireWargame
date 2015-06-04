@@ -5,6 +5,9 @@
  */
 package proyecto;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -30,13 +33,13 @@ public class Zombie extends Ficha {
     }
     
     @Override
-    public void mover() {
+    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button bu2, Button bu3, boolean ok) {
         
     }
 
     @Override
-    public void ataqueEspecial() {
-        
+    public void mover() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

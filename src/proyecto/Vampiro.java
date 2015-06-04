@@ -5,6 +5,9 @@
  */
 package proyecto;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -37,8 +40,25 @@ public class Vampiro extends Ficha{
     }
 
     @Override
-    public void ataqueEspecial() {
-        System.out.println("HOOOOOLA");
+    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button tardis, Button ult,  boolean ok) {
+        
+        int a= getX(tardis,bu);
+        int b= getY(tardis,bu);
+        
+        
+        System.out.println("Soy Vampiro");
+        int ataque= 1;
+        int life=x.tablero[b][a].getVida();
+        
+        if(ataque>life){
+            life=0;
+        }
+        else{
+            life=life-ataque;
+        }
+        
+        x.tablero[b][a].setVida(life);
+        System.out.println("Vida: " + life);
     }
     
 }

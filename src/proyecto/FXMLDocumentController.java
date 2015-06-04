@@ -112,12 +112,6 @@ public class FXMLDocumentController implements Initializable {
             stage.setScene(new Scene(root1));  
             stage.showAndWait();
        
-            
-             
-        
-           
-            
-    
     }
     
     
@@ -225,125 +219,122 @@ public class FXMLDocumentController implements Initializable {
         }       
         //botones[0][5].setGraphic(peon);
     }      
-        EventHandler mover= new EventHandler()  {
-
-            @Override
-            public void handle(Event event) {
+EventHandler mover= new EventHandler()  {
+@Override
+    public void handle(Event event) {
          
-                Object source = event.getTarget();
-                Button tardis=(Button)source;
+    Object source = event.getTarget();
+    Button tardis=(Button)source;
+    play.Print();
+    doctor=getX(tardis);
+    who=getY(tardis);
+    boolean sonic=false;
+    boolean ok= false;
+                
+    
+    if(ult.getGraphic()!=((Node)blank)){
+
+        playMedia(sonido);
+        posx=batman- doctor;
+        posy= superman-who;
+        if(posx<0)
+            posx=posx *(-1);
+        if(posy<0)
+            posy= posy*(-1);
+
+        if((posx <=1)&& (posy <=1)){
+
+            if(botones[doctor][who].getGraphic()==((Node)blank)){
+
+                botones[doctor][who].setGraphic(ult.getGraphic());
+                play.tablero[who][doctor]=play.tablero[superman][batman];
+                play.tablero[superman][batman]=null;
+                ult.setGraphic(((Node)blank));
                 play.Print();
-                doctor=getX(tardis);
-                who=getY(tardis);
-                boolean sonic=false;
-                
-                if(ult.getGraphic()!=((Node)blank)){
-                    
-                    playMedia(sonido);
-                    posx=batman- doctor;
-                    posy= superman-who;
-                    if(posx<0)
-                        posx=posx *(-1);
-                    if(posy<0)
-                        posy= posy*(-1);
-                    
-                    if((posx <=1)&& (posy <=1)){
-       
-                        
-                        if(botones[doctor][who].getGraphic()==((Node)blank)){
-                            
-                            botones[doctor][who].setGraphic(ult.getGraphic());
-                            play.tablero[who][doctor]=play.tablero[superman][batman];
-                            play.tablero[superman][batman]=null;
-                            ult.setGraphic(((Node)blank));
-                            play.Print();
-                            return;
+                return;
+            }
+            if(botones[doctor][who].getGraphic()!=((Node)blank)){
+                if(play.tablero[who][doctor].getColor().equals(play.tablero[superman][batman].getColor())){
+                }else{
+
+                     try {
+                      Menu();
+                      sonic=true;
+                       System.out.println("Menu");
+                       System.out.println("Exito");
+
+                     } catch (Exception ex) {
+                         System.out.println("non so");
                         }
-                        
-                        if(botones[doctor][who].getGraphic()!=((Node)blank)){
-                            if(play.tablero[who][doctor].getColor().equals(play.tablero[superman][batman].getColor())){
-                                 
-                            }else{
-                                
-                                 try {
-                                  Menu();
-                                  sonic=true;
-                                
-                                   System.out.println("Menu");
-                                   System.out.println("Exito");
-                                
-                                  } catch (Exception ex) {
-                                     System.out.println("non so");
-                                  }
-                                 finally{
-                                      if(files.exists()){
-                                         files.delete();
-                                         botones[doctor][who].disarm();
-                                         
-                                    //Aqui alex ataque
-                                         
-                                         int ataque= play.tablero[superman][batman].getAtaque();
-                                         
-                                         int life=play.tablero[who][doctor].getVida();
-                                         int escudo=play.tablero[who][doctor].getEscudo();
-                                         
-                                          System.out.println("Vida antes: " + life);
-                                          System.out.println("Escudo antes: " + escudo);
-                                          System.out.println("Ataque antes: " + ataque);
-                                          
-                                          if(ataque>escudo){
-                                              ataque= ataque-escudo;
-                                              escudo=0;
-                                          }
-                                          else{
-                                              escudo= escudo-ataque;
-                                              ataque=0;
-                                          }
-                                          
-                                          life= life- ataque;
-                                          
-                                          //setear las nuevas vida y escudo
-                                          play.tablero[who][doctor].setEscudo(escudo);
-                                          play.tablero[who][doctor].setVida(life);
-                                          
-                                          System.out.println("Vida despues: " + life);
-                                          System.out.println("Escudo despues: " + escudo);
-                                          System.out.println("Ataque despues: " + ataque);
-                                          System.out.println("--------------");
-                                          System.out.println("Escudo seteado: "+ play.tablero[who][doctor].getEscudo());
-                                          System.out.println("Vida seteado: "+ play.tablero[who][doctor].getVida());
-                                         
-                                          if(play.tablero[who][doctor].getVida()<=0){
-                                              botones[doctor][who].setGraphic((Node)blank);
-                                          }
-                                          
-                                   }
-                                
-                                if(files2.exists()){
-                                    files2.delete();
-                                    play.tablero[who][doctor].ataqueEspecial();
-                                    
-                                    //Aqui special attack alex
+                     finally{
+                          if(files.exists()){
+                             files.delete();
+                             botones[doctor][who].disarm();
+
+                        //Aqui alex ataque
+
+                             int ataque= play.tablero[superman][batman].getAtaque();
+
+                             int life=play.tablero[who][doctor].getVida();
+                             int escudo=play.tablero[who][doctor].getEscudo();
+
+                              System.out.println("Vida antes: " + life);
+                              System.out.println("Escudo antes: " + escudo);
+                              System.out.println("Ataque antes: " + ataque);
+
+                              if(ataque>escudo){
+                                  ataque= ataque-escudo;
+                                  escudo=0;
+                              }
+                              else{
+                                  escudo= escudo-ataque;
+                                  ataque=0;
+                              }
+
+                              life= life- ataque;
+
+                              //setear las nuevas vida y escudo
+                              play.tablero[who][doctor].setEscudo(escudo);
+                              play.tablero[who][doctor].setVida(life);
+
+                              System.out.println("Vida despues: " + life);
+                              System.out.println("Escudo despues: " + escudo);
+                              System.out.println("Ataque despues: " + ataque);
+                              System.out.println("--------------");
+                              System.out.println("Escudo seteado: "+ play.tablero[who][doctor].getEscudo());
+                              System.out.println("Vida seteado: "+ play.tablero[who][doctor].getVida());
+
+                              if(play.tablero[who][doctor].getVida()<=0){
+                                  botones[doctor][who].setGraphic((Node)blank);
+                              }
+                            }
+
+                            if(files2.exists()){
+                                files2.delete();
+                                //if(play.tablero[who][doctor].getTest().equals("H")){
+                                play.tablero[superman][batman].ataqueEspecial(play,botones,tardis,ult,ok);
+                                if(play.tablero[who][doctor].getVida()<=0){
+                                   botones[doctor][who].setGraphic((Node)blank);
                                 }
-                                
+                                //Aqui special attack alex
                             }
-                            }
-                        }
-                    }      
-                }          
-                
-                
-                
-                
-                
-                ult=tardis;    
-                batman= doctor;
-                superman= who;
-                if(sonic){
-                    System.out.println("lo apague");
-                    ult=new Button("", blank);
-                    sonic=false;
+                        }   
                 }
-            }              
-        };   
+            }
+        }      
+        
+        //parte del special del lobo
+        
+    } 
+
+    ult=tardis;    
+    batman= doctor;
+    superman= who;
+    if(sonic){
+        System.out.println("lo apague");
+        ult=new Button("", blank);
+        sonic=false;
+    }
+    }              
+};   
 }
