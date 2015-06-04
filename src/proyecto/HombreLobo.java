@@ -65,6 +65,7 @@ public class HombreLobo extends Ficha{
         int d= getY(ult,bu);// batman
         
         x.tablero[c][d].setTest("HH");
+        System.out.println(x.tablero[c][d].getTest());
             //---------------------------------------
             /*
             if(ult.getGraphic()!=((Node)blank)){
