@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="487.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.MenuController">
+   <children>
+      <Accordion layoutX="121.0" layoutY="69.0">
+        <panes>
+          <TitledPane animated="false" text="Login">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="99.0" prefWidth="200.0">
+                     <children>
+                        <PasswordField fx:id="password" layoutX="13.0" layoutY="54.0" prefHeight="31.0" prefWidth="94.0" />
+                        <Button fx:id="login" layoutX="121.0" layoutY="14.0" mnemonicParsing="false" onAction="#Login" text="Login" />
+                        <TextField fx:id="username" layoutX="14.0" layoutY="14.0" prefHeight="31.0" prefWidth="92.0" />
+                        <Label layoutX="112.0" layoutY="59.0" prefHeight="21.0" prefWidth="77.0" text="Contraseña" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Crear Player">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="237.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="newUsername" layoutX="7.0" layoutY="45.0" />
+                        <Label layoutX="43.0" layoutY="14.0" text="Nuevo Usuario" />
+                        <Label layoutX="40.0" layoutY="95.0" text="Nueva Contraseña" />
+                        <Button fx:id="CrearUsername" layoutX="69.0" layoutY="183.0" mnemonicParsing="false" onAction="#CrearJugador" text="Crear" />
+                        <PasswordField fx:id="newPassword" layoutX="8.0" layoutY="137.0" />
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+        </panes>
+      </Accordion>
+      <Button fx:id="Salir" layoutX="380.0" layoutY="285.0" mnemonicParsing="false" onAction="#Salir" text="Salir" />
+      <Button fx:id="jugadores" layoutX="372.0" layoutY="325.0" mnemonicParsing="false" onAction="#Imprimir" text="Jugadores" />
+   </children>
+</AnchorPane>
