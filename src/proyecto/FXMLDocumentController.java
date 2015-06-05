@@ -294,11 +294,13 @@ public class FXMLDocumentController implements Initializable {
             play.Print();
             doctor = getX(tardis);
             who = getY(tardis);
-            boolean limpiarult = false;
-            System.out.println(play.tablero[superman][batman].getTest());
-            if(true){
+            boolean limpiarult = false; System.out.println("Aqui dougs");
+            System.out.println(superman+" "+batman);
+            
+               
                 System.out.println("entro");
             if (ult.getGraphic() != ((Node) blank)) {
+                if(play.tablero[superman][batman].getTest().equals(f.getTest())){
                 try {
                     if (play.turno % 2 != 0 && play.tablero[superman][batman].getColor() == "azul" || play.turno % 2 == 0 && play.tablero[superman][batman].getColor() == "rojo") {
                         if(play.turno % 2 != 0){
