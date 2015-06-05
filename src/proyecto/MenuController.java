@@ -39,14 +39,14 @@ public class MenuController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    ArrayList<Player> players= new ArrayList<>();
+   ArrayList<Player> players= new ArrayList<>();
     
     @FXML
     private Button login;
-    private TextField username;
-    private TextField newUsername;
-    private PasswordField password;
-    private PasswordField newPassword;
+    public TextField username;
+    public TextField newUsername;
+    public PasswordField password;
+    public PasswordField newPassword;
     private Label warning;
     
     
@@ -65,11 +65,11 @@ public class MenuController implements Initializable {
                Stage stage = new Stage();
                stage.setTitle("Juego");
                stage.setScene(new Scene(root1));
-               stage.showAndWait();
-             }
-            
-                 
-         }
+               stage.show();
+             }    
+             
+                  
+         }        
          
           System.out.println("Usuario Incorrecto o no existe");
         
@@ -92,12 +92,25 @@ public class MenuController implements Initializable {
     
     @FXML
     public void CrearJugador(){
-        
+        boolean flag = true;
         if(newUsername.getText()!=null&&newPassword.getText()!= null){
-          players.add(new Player(newUsername.getText(),newPassword.getText()));
+           for(Player p : players){
+            if(newUsername.getText().equals(p.getUsername()) && newPassword.getText().equals(p.getPassword())){
+                System.out.println("el Jugador ya existe");
+                flag=false;
+            }
+            
+           }
+           if(flag==true)
+           players.add(new Player(newUsername.getText(),newPassword.getText()));
+ 
         }else{
             System.out.println("Agregue usuario y/o Contraseña");
         }
+        
+        newUsername.setText(null);
+        newPassword.setText(null);
+        
     }
     
     @FXML
@@ -113,9 +126,10 @@ public class MenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-        Crear();
-        
+        newUsername.setText(null);
+        newPassword.setText(null);
+        username.setText(null);
+        password.setText(null);
     }    
     
 }
