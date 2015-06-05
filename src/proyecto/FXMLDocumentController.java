@@ -138,7 +138,6 @@ public class FXMLDocumentController implements Initializable {
             play.tablero[who][doctor] = play.tablero[superman][batman];
             play.tablero[superman][batman] =new Vampiro("");
             play.Print();
-
         }
     }
 
@@ -209,7 +208,7 @@ public class FXMLDocumentController implements Initializable {
             for (int j = 0; j < 6; j++) {
 
                 botones[i][j] = new Button("", blank);
-                play.tablero[i][j]=new Vampiro("");
+                play.tablero[i][j]= new Vampiro("");
                 play.tablero[i][j].setTest("");
                 tablero.add(botones[i][j], i, j);
                 botones[i][j].setOnAction(mover);
@@ -242,6 +241,8 @@ public class FXMLDocumentController implements Initializable {
         play.tablero[0][5] = new HombreLobo("rojo");
         play.tablero[5][5] = new HombreLobo("azul");
 
+        
+        
         botones[0][0].setGraphic(play.tablero[0][0].getIcon());
         botones[0][5].setGraphic(play.tablero[5][0].getIcon());
         botones[3][0].setGraphic(play.tablero[0][3].getIcon());
@@ -274,7 +275,7 @@ public class FXMLDocumentController implements Initializable {
                     break;
                 case 2:
                     f=new Vampiro("");
-                    System.out.println("Ruleta: Vampichoco");
+                    System.out.println("Ruleta: Vampiro");
                     break;
                 case 3:
                     f=new Muerte("");
@@ -290,12 +291,7 @@ public class FXMLDocumentController implements Initializable {
     EventHandler mover = new EventHandler() {
         @Override
         public void handle(Event event) {
-            
            
-            
-            
-            
-
             Object source = event.getTarget();
             Button tardis = (Button) source;
             play.Print();
@@ -325,7 +321,6 @@ public class FXMLDocumentController implements Initializable {
                         }else{
                              Menu();
                         }
-                        
                         
                     }
                     if (close.exists()) {
@@ -359,9 +354,6 @@ public class FXMLDocumentController implements Initializable {
                         }
                         
                         files3.delete();
-                        
-                        
-                        
                     }
 
                     return;
@@ -457,12 +449,14 @@ public class FXMLDocumentController implements Initializable {
             int contarojo=0;
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 6; j++) {
-                        if(play.tablero[i][j].getColor().equals("azul")){
-                        contazul++;
+                    if(botones[i][j].getGraphic()!=((Node)blank)){
+                        if(play.tablero[j][i].getColor().equals("azul")){
+                            contazul++;
+                        }
+                        else if(play.tablero[j][i].getColor().equals("rojo")){
+                            contarojo++;
+                        }
                     }
-                    else if(play.tablero[i][j].getColor().equals("rojo")){
-                        contarojo++;
-                    }   
                 }
             }
             if(contazul==0){

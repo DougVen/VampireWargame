@@ -7,6 +7,7 @@ package proyecto;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +17,9 @@ import javafx.scene.image.ImageView;
  * @author Alejandro
  */
 public class Vampiro extends Ficha{
+    
+    private Image img2 = new Image(getClass().getResourceAsStream("yes.png"));
+    private ImageView blank = new ImageView(img2);
     
     public Vampiro(String n){
         test="V";
@@ -28,7 +32,7 @@ public class Vampiro extends Ficha{
             img=new Image(getClass().getResourceAsStream("vampirorojo.png"));
         }
         icon=new ImageView(img);    
-        ataque= 100; //3
+        ataque= 3; //3
         vida= 4;
         escudo = 5;
         
@@ -46,19 +50,24 @@ public class Vampiro extends Ficha{
         int b= getY(tardis,bu);
         
         
+        
         System.out.println("Soy Vampiro");
-        int ataque= 1;
-        int life=x.tablero[b][a].getVida();
         
-        if(ataque>life){
-            life=0;
+        if (bu[a][b].getGraphic() != ((Node) blank)){ 
+            int ataque= 1;
+            int life=x.tablero[b][a].getVida();
+
+            if(ataque>life){
+                life=0;
+            }
+            else{
+                life=life-ataque;
+            }
+
+            x.tablero[b][a].setVida(life);
+            System.out.println("Vida: " + life);
         }
-        else{
-            life=life-ataque;
-        }
-        
-        x.tablero[b][a].setVida(life);
-        System.out.println("Vida: " + life);
     }
-    
 }
+    
+

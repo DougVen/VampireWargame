@@ -21,10 +21,10 @@ public class Zombie extends Ficha {
         color=n;
         
         if(n.equals("azul")){
-            img=new Image(getClass().getResourceAsStream("vampiroazul.png"));
+            img=new Image(getClass().getResourceAsStream("zombieazul.png"));
             
         }else{
-            img=new Image(getClass().getResourceAsStream("vampirorojo.png"));
+            img=new Image(getClass().getResourceAsStream("zombierojo.png"));
         }
         icon=new ImageView(img);  
         ataque= 1;
