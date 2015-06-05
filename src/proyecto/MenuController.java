@@ -25,6 +25,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -48,7 +50,8 @@ public class MenuController implements Initializable {
     public PasswordField password;
     public PasswordField newPassword;
     private Label warning;
-    
+    public Label background;
+    private Image img2 = new Image(getClass().getResourceAsStream("castlevania.jpg"));
     
     
     @FXML
@@ -120,6 +123,8 @@ public class MenuController implements Initializable {
             System.out.println(p.getUsername());
             System.out.println("-------------");
         }
+        
+        
     }
     
   
@@ -130,6 +135,7 @@ public class MenuController implements Initializable {
         newPassword.setText(null);
         username.setText(null);
         password.setText(null);
+        background.setGraphic(new ImageView(img2));
     }    
     
 }
