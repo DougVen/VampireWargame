@@ -31,8 +31,7 @@ public class Pruebaproyecto2 extends Application {
         Scene menuscene = new Scene(menu);
         
         stage.setScene(menuscene);
-        
-        
+
         stage.show();
     }
 
