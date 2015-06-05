@@ -254,16 +254,13 @@ public class FXMLDocumentController implements Initializable {
             botones[i][0].setId("Peon:" + i);
             botones[i][5].setId("Peon2:" + i);
         }
+        System.out.println("Turno"+play.turno);
+        Ruletamaster();
         //botones[0][5].setGraphic(peon);
     }
-    public Ficha f;
-    
-    
-    EventHandler mover = new EventHandler() {
-        @Override
-        public void handle(Event event) {
-            
-            switch(play.Ruleta()){
+    public Ficha f=new Vampiro("");
+    public void Ruletamaster(){
+         switch(play.Ruleta()){
                 case 1: 
                     f=new HombreLobo("");
                     System.out.println("Ruleta:Lobo");
@@ -281,6 +278,13 @@ public class FXMLDocumentController implements Initializable {
                     f.setTest("");
                     break;
             }
+    }
+    
+    EventHandler mover = new EventHandler() {
+        @Override
+        public void handle(Event event) {
+            
+           
             
             
             
@@ -292,14 +296,18 @@ public class FXMLDocumentController implements Initializable {
             who = getY(tardis);
             boolean limpiarult = false;
             
-            if(play.tablero[who][doctor].getTest().equals(f.getTest())){
+            if(play.tablero[superman][batman].getTest().equals(f.getTest())){
+                System.out.println("entro");
             if (ult.getGraphic() != ((Node) blank)) {
                 try {
                     if (play.turno % 2 != 0 && play.tablero[superman][batman].getColor() == "azul" || play.turno % 2 == 0 && play.tablero[superman][batman].getColor() == "rojo") {
                         if(play.turno % 2 != 0){
                             System.out.println("Turno 1");
+                            
+                            
                         }else{
                             System.out.println("Turno 2");
+                           
                         }
                             
                         if(play.tablero[superman][batman].getColor().equals(returntardis())){
