@@ -15,6 +15,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javafx.application.Platform.exit;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -88,6 +89,12 @@ public class FXMLDocumentController implements Initializable {
 
         System.out.println("You clicked me!");
     }
+    
+    @FXML
+    public void Salir(){
+        exit();
+    }
+
 
     public void check(int a, int b) {
         if (botones[a][b].getGraphic() == null) {
@@ -99,6 +106,7 @@ public class FXMLDocumentController implements Initializable {
             return play.tablero[who][doctor].getColor();
         } catch (Exception e) {
             return "";
+            
         }
         
     }
@@ -119,6 +127,7 @@ public class FXMLDocumentController implements Initializable {
             play.Print();
 
         }
+        
         return true;
     }
     
@@ -285,7 +294,6 @@ public class FXMLDocumentController implements Initializable {
         public void handle(Event event) {
             
            
-            
             
             
 
