@@ -81,7 +81,7 @@ public class FXMLDocumentController implements Initializable {
     private ImageView blank = new ImageView(img2);
     private Button[][] botones = new Button[6][6];
     private int doctor, who, batman, superman, posx, posy;
-    private Button ult = new Button("", ((Node) blank));
+    public Button ult = new Button("", ((Node) blank));
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -120,6 +120,25 @@ public class FXMLDocumentController implements Initializable {
 
         }
         return true;
+    }
+    
+    public void MoverCaballo(){
+        if (posx < 0) {
+            posx = posx * (-1);
+        }
+        if (posy < 0) {
+            posy = posy * (-1);
+        }
+
+        if ((posx <= 2) && (posy <= 2)) {
+            botones[doctor][who].setGraphic(botones[batman][superman].getGraphic());
+            botones[batman][superman].setGraphic(((Node) blank));
+
+            play.tablero[who][doctor] = play.tablero[superman][batman];
+            play.tablero[superman][batman] = null;
+            play.Print();
+
+        }
     }
 
     public void Menu() throws Exception {
@@ -183,7 +202,8 @@ public class FXMLDocumentController implements Initializable {
             for (int j = 0; j < 6; j++) {
 
                 botones[i][j] = new Button("", blank);
-
+                play.tablero[i][j]=new Vampiro("");
+                play.tablero[i][j].setTest("");
                 tablero.add(botones[i][j], i, j);
                 botones[i][j].setOnAction(mover);
                 if (i % 2 == 0 && j % 2 == 0) {
@@ -236,9 +256,34 @@ public class FXMLDocumentController implements Initializable {
         }
         //botones[0][5].setGraphic(peon);
     }
+    public Ficha f;
+    
+    
     EventHandler mover = new EventHandler() {
         @Override
         public void handle(Event event) {
+            
+            switch(play.Ruleta()){
+                case 1: 
+                    f=new HombreLobo("");
+                    System.out.println("Ruleta:Lobo");
+                    break;
+                case 2:
+                    f=new Vampiro("");
+                    System.out.println("Ruleta: Vampichoco");
+                    break;
+                case 3:
+                    f=new Muerte("");
+                    System.out.println("Ruleta: Muerte");
+                    break;
+                default:
+                    f=new Vampiro("");
+                    f.setTest("");
+                    break;
+            }
+            
+            
+            
 
             Object source = event.getTarget();
             Button tardis = (Button) source;
@@ -246,10 +291,17 @@ public class FXMLDocumentController implements Initializable {
             doctor = getX(tardis);
             who = getY(tardis);
             boolean limpiarult = false;
-
+            
+            if(play.tablero[who][doctor].getTest().equals(f.getTest())){
             if (ult.getGraphic() != ((Node) blank)) {
                 try {
                     if (play.turno % 2 != 0 && play.tablero[superman][batman].getColor() == "azul" || play.turno % 2 == 0 && play.tablero[superman][batman].getColor() == "rojo") {
+                        if(play.turno % 2 != 0){
+                            System.out.println("Turno 1");
+                        }else{
+                            System.out.println("Turno 2");
+                        }
+                            
                         if(play.tablero[superman][batman].getColor().equals(returntardis())){
                            
                         }else{
@@ -273,13 +325,24 @@ public class FXMLDocumentController implements Initializable {
                 posy = superman - who;
 
                 if (botones[doctor][who].getGraphic() == ((Node) blank)) {
+                    if(files2.exists()&&play.tablero[superman][batman].getIcon()!=new ImageView(new Image(getClass().getResourceAsStream("loborojo.png")))){
+                           System.out.println("nimer");
+                        MoverCaballo();
+                        play.turno+=1;
+                            files2.delete();
+                        }
+                    
                     if (files3.exists()) {
                         if (Mover()) {
                             System.out.println("me movi");
                             play.turno += 1;
                             ult = new Button("", blank);
                         }
+                        
                         files3.delete();
+                        
+                        
+                        
                     }
 
                     return;
@@ -346,7 +409,7 @@ public class FXMLDocumentController implements Initializable {
                                 files2.delete();
                                 System.out.println("Ataque SPECIAL");
                                 //if(play.tablero[who][doctor].getTest().equals("H")){
-                                play.tablero[superman][batman].ataqueEspecial(play, botones, tardis, ult);
+                                play.tablero[superman][batman].ataqueEspecial(play, botones, tardis,ult);
                                 if (play.tablero[who][doctor].getVida() <= 0) {
                                     botones[doctor][who].setGraphic((Node) blank);
                                 }
@@ -359,7 +422,7 @@ public class FXMLDocumentController implements Initializable {
                 }
 
         //parte del special del lobo
-            }
+            }}
             ult = tardis;
             batman = doctor;
             superman = who;

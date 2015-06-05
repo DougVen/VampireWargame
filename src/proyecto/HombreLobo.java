@@ -53,46 +53,24 @@ public class HombreLobo extends Ficha{
     }
 
 
-    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button tardis, Button ult) {
-        System.out.println("LOBO");
-        
-        //who = a  // doctor= b// superman= c// batman= d
-        
-        int a= getX(tardis,bu); //doctor
-        int b= getY(tardis,bu);// who
-        
-        int c= getX(ult,bu);// superman
-        int d= getY(ult,bu);// batman
-        
-        x.tablero[c][d].setTest("HH");
-        System.out.println(x.tablero[c][d].getTest());
-            //---------------------------------------
-            /*
-            if(ult.getGraphic()!=((Node)blank)){
-                int posx= d- a;
-                int posy= c-b;
-                if(posx<0)
-                    posx=posx *(-1);
-                if(posy<0)
-                    posy= posy*(-1);
-            
-                if((posx <=2)&& (posy <=2)){
+    public void ataqueEspecial(LogicaVampire play,Button[][] botones, Button tardis, Button ult) {
+       System.out.println("LOBO SPECIAL   ");
+        int doctor=super.getX(tardis, botones);
+        int who=super.getY(tardis, botones);
+        int superman=super.getX(ult, botones);
+        int batman=super.getY(ult, botones);
+        System.out.println(doctor);
+        System.out.println(who);
+        System.out.println(superman);
+        System.out.println(batman);
+        botones[doctor][who].setGraphic(botones[batman][superman].getGraphic());
+            botones[batman][superman].setGraphic(((Node) blank));
 
-                    bu[c][d].setOnAction(mover);
-                    
-                    if(bu[b][a].getGraphic()!=((Node)blank)){
-
-                     bu[b][a].setGraphic(ult.getGraphic());
-                     x.tablero[b][a]=x.tablero[d][c];
-                     x.tablero[d][c]=null;
-                     ult.setGraphic(((Node)blank));
-                     x.Print();
-                     return;
-                    }
-                            
-                }
-            }
-                   */        
+            play.tablero[who][doctor] = play.tablero[superman][batman];
+            play.tablero[superman][batman] = null;
+        
+       
+                         
     }
                     
 }
