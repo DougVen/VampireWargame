@@ -135,7 +135,7 @@ public class FXMLDocumentController implements Initializable {
             botones[batman][superman].setGraphic(((Node) blank));
 
             play.tablero[who][doctor] = play.tablero[superman][batman];
-            play.tablero[superman][batman] = null;
+            play.tablero[superman][batman] =new Vampiro("");
             play.Print();
 
         }
@@ -295,18 +295,19 @@ public class FXMLDocumentController implements Initializable {
             doctor = getX(tardis);
             who = getY(tardis);
             boolean limpiarult = false;
-            
-            if(play.tablero[superman][batman].getTest().equals(f.getTest())){
+            System.out.println(play.tablero[superman][batman].getTest());
+            if(true){
                 System.out.println("entro");
             if (ult.getGraphic() != ((Node) blank)) {
                 try {
                     if (play.turno % 2 != 0 && play.tablero[superman][batman].getColor() == "azul" || play.turno % 2 == 0 && play.tablero[superman][batman].getColor() == "rojo") {
                         if(play.turno % 2 != 0){
                             System.out.println("Turno 1");
-                            
+                            Ruletamaster();
                             
                         }else{
                             System.out.println("Turno 2");
+                            Ruletamaster();
                            
                         }
                             
@@ -333,7 +334,7 @@ public class FXMLDocumentController implements Initializable {
                 posy = superman - who;
 
                 if (botones[doctor][who].getGraphic() == ((Node) blank)) {
-                    if(files2.exists()&&play.tablero[superman][batman].getIcon()!=new ImageView(new Image(getClass().getResourceAsStream("loborojo.png")))){
+                    if(files2.exists()&&play.tablero[superman][batman] instanceof HombreLobo){
                            System.out.println("nimer");
                         MoverCaballo();
                         play.turno+=1;
@@ -430,7 +431,8 @@ public class FXMLDocumentController implements Initializable {
                 }
 
         //parte del special del lobo
-            }}
+            }
+            }
             ult = tardis;
             batman = doctor;
             superman = who;
