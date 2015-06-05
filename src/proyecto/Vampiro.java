@@ -28,7 +28,7 @@ public class Vampiro extends Ficha{
             img=new Image(getClass().getResourceAsStream("vampirorojo.png"));
         }
         icon=new ImageView(img);    
-        ataque= 3;
+        ataque= 100; //3
         vida= 4;
         escudo = 5;
         

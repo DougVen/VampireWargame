@@ -40,6 +40,14 @@ public class AtaquesController implements Initializable {
     stage.close();
     }
     
+    private void terminar() throws IOException{
+        Stage stage = (Stage) cancel.getScene().getWindow();
+        File close=new File("close.txt");
+        close.createNewFile();
+    // do what you have to do
+    stage.close();
+    }
+    
     @FXML
     public void Attack() throws IOException{
         

@@ -6,6 +6,7 @@
 package PROYECTO;
 
 import java.io.File;
+import java.io.IOException;
 import javafx.stage.Stage;
 import java.net.URL;
 import java.sql.Time;
@@ -190,6 +191,12 @@ public class FXMLDocumentController implements Initializable {
             mp.play();
         }
     }
+    private void terminar() throws IOException{
+        Stage stage2 = (Stage) botones[0][0].getScene().getWindow();
+        File close=new File("close.txt");
+        close.createNewFile();
+        stage2.close();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -300,7 +307,7 @@ public class FXMLDocumentController implements Initializable {
                
                 System.out.println("entro");
             if (ult.getGraphic() != ((Node) blank)) {
-                if(play.tablero[superman][batman].getTest().equals(f.getTest())){
+              if(play.tablero[superman][batman].getTest().equals(f.getTest())){
                 try {
                     if (play.turno % 2 != 0 && play.tablero[superman][batman].getColor() == "azul" || play.turno % 2 == 0 && play.tablero[superman][batman].getColor() == "rojo") {
                         if(play.turno % 2 != 0){
@@ -331,6 +338,7 @@ public class FXMLDocumentController implements Initializable {
                 } catch (Exception ex) {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
                 playMedia(sonido);
                 posx = batman - doctor;
                 posy = superman - who;
@@ -444,6 +452,34 @@ public class FXMLDocumentController implements Initializable {
                 ult = new Button("", (Node) blank);
                 batman = 0;
                 superman = 0;
+            }
+            int contazul=0;
+            int contarojo=0;
+            for (int i = 0; i < 6; i++) {
+                for (int j = 0; j < 6; j++) {
+                        if(play.tablero[i][j].getColor().equals("azul")){
+                        contazul++;
+                    }
+                    else if(play.tablero[i][j].getColor().equals("rojo")){
+                        contarojo++;
+                    }   
+                }
+            }
+            if(contazul==0){
+                System.out.println("Gano el equipo rojo!");
+                try {
+                    terminar();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if(contarojo==0){
+                System.out.println("Gano el equipo azul!");
+                try {
+                    terminar();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
     //no me funciona el special del lobo..
