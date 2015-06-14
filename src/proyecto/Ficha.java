@@ -89,6 +89,7 @@ public abstract class Ficha {
     
 //--------------Funciones---------------------------------- 
     public boolean mover(LogicaVampire play,Button[][] botones, Button tardis,int superman,int batman){
+         int doctor=getX(tardis, botones);
          int who=getY(tardis, botones);
          Image img2 = new Image(getClass().getResourceAsStream("yes.png"));
         ImageView blank = new ImageView(img2);
