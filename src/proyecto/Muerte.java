@@ -34,10 +34,6 @@ public class Muerte extends Ficha{
         escudo =1;
     }
     
-    @Override
-    public void mover() {
-       
-    }
 
     @Override
     public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button tardis, Button ult) {

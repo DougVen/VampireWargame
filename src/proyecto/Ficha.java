@@ -7,6 +7,7 @@ package proyecto;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -87,7 +88,20 @@ public abstract class Ficha {
     }
     
 //--------------Funciones---------------------------------- 
-    public abstract void mover();
+    public boolean mover(LogicaVampire play,Button[][] botones, Button tardis,int superman,int batman){
+         int who=getY(tardis, botones);
+         Image img2 = new Image(getClass().getResourceAsStream("yes.png"));
+        ImageView blank = new ImageView(img2);
+            botones[doctor][who].setGraphic(botones[batman][superman].getGraphic());
+            botones[batman][superman].setGraphic(((Node) blank));
+
+            play.tablero[who][doctor] = play.tablero[superman][batman];
+            play.tablero[superman][batman] = null;
+            play.Print();
+
+        
+        return true;
+    }
     
     public abstract void ataqueEspecial(LogicaVampire x,Button[][] bu, Button bu2, Button bu3);
     

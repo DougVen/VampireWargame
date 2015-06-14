@@ -47,10 +47,7 @@ public class HombreLobo extends Ficha{
     
     
     
-    @Override
-    public void mover() {
-        
-    }
+   
 
 
     public void ataqueEspecial(LogicaVampire play,Button[][] botones, Button tardis, Button ult) {

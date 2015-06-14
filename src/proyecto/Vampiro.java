@@ -39,11 +39,8 @@ public class Vampiro extends Ficha{
     }
     
     @Override
-    public void mover() {
-       
-    }
-
-    @Override
+   
+ 
     public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button tardis, Button ult) {
         
         int a= getX(tardis,bu);

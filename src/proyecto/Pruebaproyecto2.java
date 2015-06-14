@@ -23,7 +23,7 @@ public class Pruebaproyecto2 extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         
-        Parent menu = FXMLLoader.load(getClass().getResource("menu.fxml"));
+        Parent menu = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
          
         Scene menuscene = new Scene(menu);
         
