@@ -37,5 +37,10 @@ public class Zombie extends Ficha {
         
     }
 
+    @Override
+    public boolean mover(LogicaVampire play, Button[][] botones, Button tardis, int superman, int batman) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
    
 }

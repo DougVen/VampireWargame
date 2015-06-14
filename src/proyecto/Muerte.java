@@ -85,6 +85,11 @@ public class Muerte extends Ficha{
             }
         }while(!(choice.equals("lanza") || choice.equals("spawn")));
     }
+
+    @Override
+    public boolean mover(LogicaVampire play, Button[][] botones, Button tardis, int superman, int batman) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }
