@@ -103,25 +103,23 @@ public class FXMLDocumentController implements Initializable {
         }
         
     }
-    public boolean Mover() {
-        if (posx < 0) {
-            posx = posx * (-1);
-        }
-        if (posy < 0) {
-            posy = posy * (-1);
-        }
+     public boolean Mover(){
+        if(posx<0)
+            posx=posx *(-1);
+        if(posy<0)
+            posy= posy*(-1);
 
-        if ((posx <= 1) && (posy <= 1)) {
-            botones[doctor][who].setGraphic(botones[batman][superman].getGraphic());
-            botones[batman][superman].setGraphic(((Node) blank));
-
-            play.tablero[who][doctor] = play.tablero[superman][batman];
-            play.tablero[superman][batman] = null;
-            play.Print();
-
+        if((posx <=1)&& (posy <=1)){
+        botones[doctor][who].setGraphic(botones[batman][superman].getGraphic());
+        botones[batman][superman].setGraphic(((Node)blank));
+        play.tablero[who][doctor]=play.tablero[superman][batman];
+        play.tablero[superman][batman]=null;      
+        play.Print();
+                
         }
         return true;
     }
+       
     
     public void MoverCaballo(){
         if (posx < 0) {
