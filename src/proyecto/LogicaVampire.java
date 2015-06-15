@@ -14,8 +14,9 @@ import java.util.stream.IntStream;
  * @author usuario
  */
 public class LogicaVampire {
-    protected int turno=1;
+    public int turno=1;
     public Ficha[][] tablero;
+
 
     public LogicaVampire() {
         tablero=new Ficha[6][6];
@@ -32,7 +33,7 @@ public class LogicaVampire {
             }System.out.println("");         
             
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 2; i++) {
             System.out.println("");
         }
     }

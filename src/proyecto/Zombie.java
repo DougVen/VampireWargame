@@ -5,6 +5,9 @@
  */
 package proyecto;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -18,10 +21,10 @@ public class Zombie extends Ficha {
         color=n;
         
         if(n.equals("azul")){
-            img=new Image(getClass().getResourceAsStream("vampiroazul.png"));
+            img=new Image(getClass().getResourceAsStream("zombieazul.png"));
             
         }else{
-            img=new Image(getClass().getResourceAsStream("vampirorojo.png"));
+            img=new Image(getClass().getResourceAsStream("zombierojo.png"));
         }
         icon=new ImageView(img);  
         ataque= 1;
@@ -30,13 +33,14 @@ public class Zombie extends Ficha {
     }
     
     @Override
-    public void mover() {
+    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button bu2, Button bu3) {
         
     }
 
     @Override
-    public void ataqueEspecial() {
-        
+    public boolean mover(LogicaVampire play, Button[][] botones, Button tardis, int superman, int batman) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+   
 }
