@@ -345,17 +345,40 @@ public class FXMLDocumentController implements Initializable {
                         }
                     
                     if (files3.exists()) {
-                        if (Mover()) {
-                            System.out.println("me movi");
-                            play.turno += 1;
-                            ult = new Button("", blank);
-                        }
-                        
-                        files3.delete();
+                          botones[doctor][who].setGraphic(botones[batman][superman].getGraphic());
+        botones[batman][superman].setGraphic(((Node)blank));
+        play.tablero[who][doctor]=play.tablero[superman][batman];
+        play.tablero[superman][batman]=null;      
+        play.Print();
+                
+                        if(false){
+                       System.out.println("me movi");
+                       ult=new Button("", blank);
+                   }
+                    files3.delete();
                     }
 
                     return;
                 }
+                /*
+                    if(files3.exists()){
+                   if(Mover()){
+                       System.out.println("me movi");
+                       ult=new Button("", blank);
+                   }
+                    files3.delete();
+                }
+                
+                if(files2.exists()){
+                                files2.delete();
+                                System.out.println("Ataque SPECIAL");
+                                play.tablero[superman][batman].ataqueEspecial(play,botones,tardis,ult);
+                    }
+                
+                return;
+            }
+                */
+                
                 if (botones[doctor][who].getGraphic() != ((Node) blank)) {
                     if (play.tablero[who][doctor].getColor().equals(play.tablero[superman][batman].getColor())) {
 
