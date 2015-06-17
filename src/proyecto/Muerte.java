@@ -16,75 +16,60 @@ import javafx.scene.image.ImageView;
  *
  * @author Alejandro
  */
-public class Muerte extends Ficha{
+public class Muerte extends Ficha {
 
-   public Muerte(String n){
-       test="M";
-        color=n;
-        
-        if(n.equals("azul")){
-            img=new Image(getClass().getResourceAsStream("muerteazul.png"));
-            
-        }else{
-            img=new Image(getClass().getResourceAsStream("muerteroja.png"));
+    public Muerte(String n) {
+        test = "M";
+        color = n;
+
+        if (n.equals("azul")) {
+            img = new Image(getClass().getResourceAsStream("muerteazul.png"));
+
+        } else {
+            img = new Image(getClass().getResourceAsStream("muerteroja.png"));
         }
-        icon=new ImageView(img);  
-        ataque= 4;
-        vida= 3;
-        escudo =1;
+        icon = new ImageView(img);
+        ataque = 4;
+        vida = 3;
+        escudo = 1;
     }
-    
 
     @Override
-    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button tardis, Button ult) {
-        int a= getX(tardis,bu);
-        int b= getY(tardis,bu);
-        
-        int c= getX(ult,bu);//batman
-        int d= getY(ult,bu);//superman
-        
-        System.out.println("Que ataque especial quiere?");
-        System.out.println("Escriba "+"'"+ "lanza"+ "'"+" o "+"'"+"spawn"+"'");
-        Scanner lea= new Scanner(System.in);
-        String choice= lea.next().toLowerCase();
-        
-        do{
-            try{
-                switch(choice){
-                    case "lanza":
-                        System.out.println("Soy Muerte");
+    public void ataqueEspecial(LogicaVampire x, Button[][] bu, Button tardis, int superman, int batman) {
+        int a = getX(tardis, bu);
+        int b = getY(tardis, bu);
 
-                        int ataque= 2;
-                        int life=x.tablero[b][a].getVida();
-                        System.out.println("Vida antes del special: " + life);
-                        if(ataque>life){
-                            life=0;
-                        }
-                        else{
-                            life=life-ataque;
-                        }
-                        x.tablero[b][a].setVida(life);
-                        System.out.println("Vida despues del special: " + life);
-                        //--------------------------
+        int c = superman;//batman
+        int d = batman;//superman
 
-                        
-                    case "spawn":
-                        //aqui spawn de zombie
-                        if (x.tablero[d][c].getColor().equals("rojo")){
-                            x.tablero[b][a] = new Zombie("rojo");
-                            bu[a][b].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("zombierojo.png"))));
-                        }
-                        else{
-                            x.tablero[b][a] = new Zombie("azul");
-                            bu[a][b].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("zombieazul.png"))));
-                        }
-               }
+        if (!x.tablero[b][a].getTest().equals("X")) {
+
+            System.out.println("ZOMBIE-------------");
+
+            int ataque = 2;
+            int life = x.tablero[b][a].getVida();
+            System.out.println("Vida antes del special: " + life);
+            if (ataque > life) {
+                life = 0;
+            } else {
+                life = life - ataque;
             }
-            catch(Exception e){
-                e.getMessage();
+            x.tablero[b][a].setVida(life);
+            System.out.println("Vida despues del special: " + life);
+            //--------------------------
+        } else {
+
+            //aqui spawn de zombie
+            if (x.tablero[c][d].getColor().equals("azul")) {
+                x.tablero[b][a] = new Zombie("azul");
+                bu[a][b].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("zombieazul.png"))));
+
+            } else {
+                x.tablero[b][a] = new Zombie("rojo");
+                bu[a][b].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("zombierojo.png"))));
             }
-        }while(!(choice.equals("lanza") || choice.equals("spawn")));
+        }
+
     }
-    
-    
+
 }

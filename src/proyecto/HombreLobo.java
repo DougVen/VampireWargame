@@ -29,6 +29,8 @@ public class HombreLobo extends Ficha{
     private Button ult= new Button("",((Node)blank));
     
     
+    
+    
     public HombreLobo(String n){
         test="H";
         color=n;
@@ -50,24 +52,46 @@ public class HombreLobo extends Ficha{
    
 
 
-    public void ataqueEspecial(LogicaVampire play,Button[][] botones, Button tardis, Button ult) {
+    public void ataqueEspecial(LogicaVampire play,Button[][] botones, Button tardis, Button ult, int t) {
        System.out.println("LOBO SPECIAL   ");
         int doctor=super.getX(tardis, botones);
         int who=super.getY(tardis, botones);
         int superman=super.getX(ult, botones);
         int batman=super.getY(ult, botones);
-        System.out.println(doctor);
-        System.out.println(who);
-        System.out.println(superman);
-        System.out.println(batman);
-        botones[doctor][who].setGraphic(botones[batman][superman].getGraphic());
-            botones[batman][superman].setGraphic(((Node) blank));
+        int posx = batman - doctor;
+        int posy = superman - who;
+        if (posx < 0) {
+            posx = posx * (-1);
+        }
+        if (posy < 0) {
+            posy = posy * (-1);
+        }
 
-            play.tablero[who][doctor] = play.tablero[superman][batman];
-            play.tablero[superman][batman] = null;
+        if ((posx <= 2) && (posy <= 2)) {
+                mover(play, botones, doctor, who, superman, batman);
+        }
         
        
                          
+    }
+
+    @Override
+    public void ataqueEspecial(LogicaVampire play, Button[][] botones, Button tardis, int superman, int batman){
+      int doctor = getX(tardis, botones);
+        int who = getY(tardis, botones);
+        int posx = batman - doctor;
+        int posy = superman - who;
+
+        if (posx < 0) {
+            posx = posx * (-1);
+        }
+        if (posy < 0) {
+            posy = posy * (-1);
+        }
+
+        if ((posx <= 2) && (posy <= 2)) {
+                mover(play, botones, doctor, who, superman, batman);
+        }
     }
                     
 }

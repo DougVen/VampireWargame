@@ -19,7 +19,7 @@ public class Zombie extends Ficha {
     
     Zombie(String n){
         color=n;
-        
+        test="Z";
         if(n.equals("azul")){
             img=new Image(getClass().getResourceAsStream("zombieazul.png"));
             
@@ -33,7 +33,7 @@ public class Zombie extends Ficha {
     }
     
     @Override
-    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button bu2, Button bu3) {
+    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button tardis, int superman, int batman) {
         
     }
 

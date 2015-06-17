@@ -95,49 +95,17 @@ public class FXMLDocumentController implements Initializable {
             System.out.println("3");
         }
     }
-    public String returntardis(){
+
+    public String returntardis() {
         try {
             return play.tablero[who][doctor].getColor();
         } catch (Exception e) {
             return "";
         }
-        
-    }
-     public boolean Mover(){
-        if(posx<0)
-            posx=posx *(-1);
-        if(posy<0)
-            posy= posy*(-1);
 
-        if((posx <=1)&& (posy <=1)){
-        botones[doctor][who].setGraphic(botones[batman][superman].getGraphic());
-        botones[batman][superman].setGraphic(((Node)blank));
-        play.tablero[who][doctor]=play.tablero[superman][batman];
-        play.tablero[superman][batman]=null;      
-        play.Print();
-                
-        }
-        return true;
     }
-       
-    
-    public void MoverCaballo(){
-        if (posx < 0) {
-            posx = posx * (-1);
-        }
-        if (posy < 0) {
-            posy = posy * (-1);
-        }
 
-        if ((posx <= 2) && (posy <= 2)) {
-            botones[doctor][who].setGraphic(botones[batman][superman].getGraphic());
-            botones[batman][superman].setGraphic(((Node) blank));
-
-            play.tablero[who][doctor] = play.tablero[superman][batman];
-            play.tablero[superman][batman] =new Vampiro("");
-            play.Print();
-        }
-    }
+   
 
     public void Menu() throws Exception {
 
@@ -188,9 +156,10 @@ public class FXMLDocumentController implements Initializable {
             mp.play();
         }
     }
-    private void terminar() throws IOException{
+
+    private void terminar() throws IOException {
         Stage stage2 = (Stage) botones[0][0].getScene().getWindow();
-        File close=new File("close.txt");
+        File close = new File("close.txt");
         close.createNewFile();
         stage2.close();
     }
@@ -206,8 +175,8 @@ public class FXMLDocumentController implements Initializable {
             for (int j = 0; j < 6; j++) {
 
                 botones[i][j] = new Button("", blank);
-                play.tablero[i][j]= new Vampiro("");
-                play.tablero[i][j].setTest("");
+                play.tablero[i][j] = new Vampiro("");
+                play.tablero[i][j].setTest("X");
                 tablero.add(botones[i][j], i, j);
                 botones[i][j].setOnAction(mover);
                 if (i % 2 == 0 && j % 2 == 0) {
@@ -239,8 +208,6 @@ public class FXMLDocumentController implements Initializable {
         play.tablero[0][5] = new HombreLobo("rojo");
         play.tablero[5][5] = new HombreLobo("azul");
 
-        
-        
         botones[0][0].setGraphic(play.tablero[0][0].getIcon());
         botones[0][5].setGraphic(play.tablero[5][0].getIcon());
         botones[3][0].setGraphic(play.tablero[0][3].getIcon());
@@ -260,146 +227,148 @@ public class FXMLDocumentController implements Initializable {
             botones[i][0].setId("Peon:" + i);
             botones[i][5].setId("Peon2:" + i);
         }
-        System.out.println("Turno"+play.turno);
+        System.out.println("Turno" + play.turno);
         Ruletamaster();
         //botones[0][5].setGraphic(peon);
     }
-    public Ficha f=new Vampiro("");
-    public void Ruletamaster(){
-         switch(play.Ruleta()){
-                case 1: 
-                    f=new HombreLobo("");
-                    System.out.println("Ruleta:Lobo");
-                    break;
-                case 2:
-                    f=new Vampiro("");
-                    System.out.println("Ruleta: Vampiro");
-                    break;
-                case 3:
-                    f=new Muerte("");
-                    System.out.println("Ruleta: Muerte");
-                    break;
-                default:
-                    f=new Vampiro("");
-                    f.setTest("");
-                    break;
-            }
+    public Ficha f = new Vampiro("");
+
+    public void Ruletamaster() {
+        switch (play.Ruleta()) {
+            case 1:
+                f = new HombreLobo("");
+                System.out.println("Ruleta:Lobo");
+                break;
+            case 2:
+                f = new Vampiro("");
+                System.out.println("Ruleta: Vampiro");
+                break;
+            case 3:
+                f = new Muerte("");
+                System.out.println("Ruleta: Muerte");
+                break;
+            default:
+                f = new Vampiro("");
+                f.setTest("");
+                break;
+        }
     }
-    
+
     EventHandler mover = new EventHandler() {
         @Override
         public void handle(Event event) {
-           
+            
             Object source = event.getTarget();
             Button tardis = (Button) source;
             play.Print();
             doctor = getX(tardis);
             who = getY(tardis);
-            boolean limpiarult = false; System.out.println("Aqui dougs");
-            System.out.println(superman+" "+batman);
-            
-               
-                System.out.println("entro");
+            boolean limpiarult = false;
+            boolean sonic=true;
+            System.out.println("Aqui dougs");
+            System.out.println(superman + " " + batman);
+
+            System.out.println("entro");
             if (ult.getGraphic() != ((Node) blank)) {
-              if(play.tablero[superman][batman].getTest().equals(f.getTest())){
-                try {
-                    if (play.turno % 2 != 0 && play.tablero[superman][batman].getColor() == "azul" || play.turno % 2 == 0 && play.tablero[superman][batman].getColor() == "rojo") {
-                        if(play.turno % 2 != 0){
-                            System.out.println("Turno 1");
-                            Ruletamaster();
+                if (play.tablero[superman][batman].getTest().equals(f.getTest())) {
+                    
+                    try {
+                        if (play.turno % 2 != 0 && play.tablero[superman][batman].getColor() == "azul" || play.turno % 2 == 0 && play.tablero[superman][batman].getColor() == "rojo") {
+                            if (play.turno % 2 != 0&&sonic) {
+                                System.out.println("Turno 1");
+                                
+
+                            } 
                             
-                        }else{
-                            System.out.println("Turno 2");
+                           if (play.turno % 2 ==0&&sonic){
+                                System.out.println("Turno 2");
+                                
+
+                            }
+
+                            if (play.tablero[superman][batman].getColor().equals(returntardis())) {
+
+                            } else {
+                                Menu();
+                                play.Print();
+                                sonic=true;
+                            }
+
+                        }
+                        if (close.exists()) {
+                            close.delete();
+                            ult = new Button("", blank);
+                            System.out.println("yay");
+                            sonic=false;
+                        }
+
+                    } catch (Exception ex) {
+                        Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    playMedia(sonido);
+                    posx = batman - doctor;
+                    posy = superman - who;
+
+                    if (play.tablero[who][doctor].getTest().equals("X")) {
+                        if (files2.exists() && play.tablero[superman][batman] instanceof HombreLobo) {
+                             System.out.println("nimer");
+                            play.tablero[superman][batman].ataqueEspecial(play, botones, tardis, superman, batman);
+                            play.turno += 1;
                             Ruletamaster();
-                           
-                        }
-                            
-                        if(play.tablero[superman][batman].getColor().equals(returntardis())){
-                           
-                        }else{
-                             Menu();
-                        }
-                        
-                    }
-                    if (close.exists()) {
-                        close.delete();
-                        ult = new Button("", blank);
-                        System.out.println("yay");
-
-                    }
-
-                } catch (Exception ex) {
-                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                playMedia(sonido);
-                posx = batman - doctor;
-                posy = superman - who;
-
-                if (botones[doctor][who].getGraphic() == ((Node) blank)) {
-                    if(files2.exists()&&play.tablero[superman][batman] instanceof HombreLobo){
-                           System.out.println("nimer");
-                        MoverCaballo();
-                        play.turno+=1;
                             files2.delete();
                         }
-                    
-                    if (files3.exists()) {
-                          botones[doctor][who].setGraphic(botones[batman][superman].getGraphic());
-        botones[batman][superman].setGraphic(((Node)blank));
-        play.tablero[who][doctor]=play.tablero[superman][batman];
-        play.tablero[superman][batman]=null;      
-        play.Print();
-                
-                        if(false){
-                       System.out.println("me movi");
-                       ult=new Button("", blank);
-                   }
-                    files3.delete();
+                        
+                        if (files2.exists() && play.tablero[superman][batman] instanceof Muerte) {
+                             System.out.println("nimer");
+                            play.tablero[superman][batman].ataqueEspecial(play, botones, tardis, superman, batman);
+                            play.turno += 1;
+                            Ruletamaster();
+                            files2.delete();
+                        }
+
+                        if (files3.exists()) {
+
+                            if (true) {
+                               play.tablero[superman][batman].mover(play, botones, tardis, superman, batman);
+                                System.out.println("me movi");
+                                ult = new Button("", blank);
+                                play.turno+=1;
+                                Ruletamaster();
+                                
+                                
+                                
+                            }
+                            files3.delete();
+                        }
+
+                        return;
                     }
+                    /*if (files3.exists()) {
+                            
+                           
+                            
+                     if (Mover()) {
+                     System.out.println("me movi");
+                     ult = new Button("", blank);
+                     }
+                     files3.delete();
+                     }*/
 
-                    return;
-                }
-                /*
-                    if(files3.exists()){
-                   if(Mover()){
-                       System.out.println("me movi");
-                       ult=new Button("", blank);
-                   }
-                    files3.delete();
-                }
-                
-                if(files2.exists()){
-                                files2.delete();
-                                System.out.println("Ataque SPECIAL");
-                                play.tablero[superman][batman].ataqueEspecial(play,botones,tardis,ult);
-                    }
-                
-                return;
-            }
-                */
-                
-                if (botones[doctor][who].getGraphic() != ((Node) blank)) {
-                    if (play.tablero[who][doctor].getColor().equals(play.tablero[superman][batman].getColor())) {
+                    if (botones[doctor][who].getGraphic() != ((Node) blank)) {
 
-                    } else {
+                        if (play.tablero[who][doctor].getColor().equals(play.tablero[superman][batman].getColor())) {
 
-                        try {
-
-                            System.out.println("Menu");
-                            System.out.println("Exito");
-
-                        } catch (Exception ex) {
-                            System.out.println("non so");
-                        } finally {
+                        } else {
 
                             if (files.exists()) {
+
                                 limpiarult = true;
                                 play.turno += 1;
                                 files.delete();
                                 botones[doctor][who].disarm();
 
-                        //Aqui alex ataque
+                                //Aqui alex ataque
                                 int ataque = play.tablero[superman][batman].getAtaque();
 
                                 int life = play.tablero[who][doctor].getVida();
@@ -433,6 +402,7 @@ public class FXMLDocumentController implements Initializable {
                                 if (play.tablero[who][doctor].getVida() <= 0) {
                                     botones[doctor][who].setGraphic((Node) blank);
                                 }
+                                Ruletamaster();
                             }
 
                             if (files2.exists()) {
@@ -441,20 +411,20 @@ public class FXMLDocumentController implements Initializable {
                                 files2.delete();
                                 System.out.println("Ataque SPECIAL");
                                 //if(play.tablero[who][doctor].getTest().equals("H")){
-                                play.tablero[superman][batman].ataqueEspecial(play, botones, tardis,ult);
+                                play.tablero[superman][batman].ataqueEspecial(play, botones, tardis, superman, batman);
                                 if (play.tablero[who][doctor].getVida() <= 0) {
                                     botones[doctor][who].setGraphic((Node) blank);
                                 }
+                                Ruletamaster();;
 
                                 //Aqui special attack alex
                             }
 
                         }
                     }
-                }
 
-        //parte del special del lobo
-            }
+                    //parte del special del lobo
+                }
             }
             ult = tardis;
             batman = doctor;
@@ -466,21 +436,20 @@ public class FXMLDocumentController implements Initializable {
                 batman = 0;
                 superman = 0;
             }
-            int contazul=0;
-            int contarojo=0;
+            int contazul = 0;
+            int contarojo = 0;
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 6; j++) {
-                    if(botones[i][j].getGraphic()!=((Node)blank)){
-                        if(play.tablero[j][i].getColor().equals("azul")){
+                    if (botones[i][j].getGraphic() != ((Node) blank)) {
+                        if (play.tablero[j][i].getColor().equals("azul")) {
                             contazul++;
-                        }
-                        else if(play.tablero[j][i].getColor().equals("rojo")){
+                        } else if (play.tablero[j][i].getColor().equals("rojo")) {
                             contarojo++;
                         }
                     }
                 }
             }
-            if(contazul==0){
+            if (contazul == 0) {
                 System.out.println("Gano el equipo rojo!");
                 try {
                     terminar();
@@ -488,7 +457,7 @@ public class FXMLDocumentController implements Initializable {
                     Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            if(contarojo==0){
+            if (contarojo == 0) {
                 System.out.println("Gano el equipo azul!");
                 try {
                     terminar();
@@ -497,7 +466,7 @@ public class FXMLDocumentController implements Initializable {
                 }
             }
 
-    //no me funciona el special del lobo..
+            //no me funciona el special del lobo..
                 /*
              if(play.tablero[superman][batman].getTest().equals("H")){
              System.out.println("plss");

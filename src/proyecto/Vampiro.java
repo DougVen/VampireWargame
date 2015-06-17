@@ -28,9 +28,11 @@ public class Vampiro extends Ficha{
         if(n.equals("azul")){
             img=new Image(getClass().getResourceAsStream("vampiroazul.png"));
             
-        }else{
+        }else {
             img=new Image(getClass().getResourceAsStream("vampirorojo.png"));
         }
+        
+       
         icon=new ImageView(img);    
         ataque= 3; //3
         vida= 4;
@@ -41,7 +43,7 @@ public class Vampiro extends Ficha{
     @Override
    
  
-    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button tardis, Button ult) {
+    public void ataqueEspecial(LogicaVampire x,Button[][] bu, Button tardis, int superman, int batman) {
         
         int a= getX(tardis,bu);
         int b= getY(tardis,bu);
