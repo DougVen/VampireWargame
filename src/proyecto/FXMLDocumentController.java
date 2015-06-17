@@ -83,6 +83,10 @@ public class FXMLDocumentController implements Initializable {
     private Button[][] botones = new Button[6][6];
     private int doctor, who, batman, superman, posx, posy;
     public Button ult = new Button("", ((Node) blank));
+    @FXML
+    Label ataque, tipo, escudo, vida, ruleta, turno;
+    @FXML
+    Button fin, save;
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -104,8 +108,62 @@ public class FXMLDocumentController implements Initializable {
         }
 
     }
+    boolean limon = false;
 
-   
+    private void IncTurno() {
+
+        //move eso^^^^^^
+        if (play.turno % 2 == 0) {
+            if (play.contarRojas() <= 2) {
+                if (!limon) {
+                    Ruletamaster();
+                    limon = true;
+                    return;
+                }
+                limon = false;
+                play.turno += 1;
+            } else if (play.contarRojas() <= 4) {
+                if (!limon) {
+                    Ruletamaster();
+                    limon = true;
+                    return;
+                }
+                limon = false;
+                play.turno += 1;
+            } else {
+                play.turno += 1;
+            }
+        } else {
+            if (play.contarAzules() <= 2) {
+                if (!limon) {
+                    Ruletamaster();
+                    limon = true;
+                    return;
+                }
+                limon = false;
+                play.turno += 1;
+            } else if (play.contarAzules() <= 4) {
+                if (!limon) {
+                    Ruletamaster();
+                    limon = true;
+                    return;
+                }
+                limon = false;
+                play.turno += 1;
+            } else {
+                play.turno += 1;
+            }
+
+        }
+
+        if (play.turno % 2 == 0) {
+            turno.setText("2");
+        } else {
+            turno.setText("1");
+
+        }
+        Ruletamaster();
+    }
 
     public void Menu() throws Exception {
 
@@ -166,7 +224,8 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        fin.setOnAction(surrender);
+        save.setOnAction(Guardar);
         playMedia(son);
         tablero.getColumnConstraints().add(new ColumnConstraints(20)); // column 0 is 100 wide
         tablero.getRowConstraints().add(new RowConstraints(-60));
@@ -192,7 +251,7 @@ public class FXMLDocumentController implements Initializable {
             }
 
         }
-
+        turno.setText("1");
         play.tablero[0][0] = new HombreLobo("rojo");
         play.tablero[5][0] = new HombreLobo("azul");
         play.tablero[0][3] = new Muerte("rojo");
@@ -238,60 +297,117 @@ public class FXMLDocumentController implements Initializable {
             case 1:
                 f = new HombreLobo("");
                 System.out.println("Ruleta:Lobo");
+                ruleta.setText("Lobo");
                 break;
             case 2:
                 f = new Vampiro("");
                 System.out.println("Ruleta: Vampiro");
+                ruleta.setText("Vampiro");
                 break;
             case 3:
                 f = new Muerte("");
                 System.out.println("Ruleta: Muerte");
+                ruleta.setText("Muerte");
                 break;
             default:
                 f = new Vampiro("");
-                f.setTest("");
+                f.setTest("Vampiro");
+                ruleta.setText("-------");
                 break;
         }
     }
 
+    EventHandler surrender = new EventHandler() {
+        @Override
+        public void handle(Event event) {
+            try {
+                play.turno += 1;
+                System.out.print("Jugador");
+                if (play.turno % 2 == 0) {
+                    System.out.println(" 1");
+                } else {
+                    System.out.println(" 2");
+                }
+                System.out.println("Se rindio");
+                System.out.print("Gano Jugador");
+                play.turno += 1;
+                if (play.turno % 2 == 0) {
+                    System.out.println(" 1");
+                } else {
+                    System.out.println(" 2");
+                }
+
+                terminar();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    };
+    EventHandler Guardar = new EventHandler() {
+        @Override
+        public void handle(Event event) {
+            System.out.println("Digamos que se guardo");
+            try {
+                terminar();
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    };
+
     EventHandler mover = new EventHandler() {
         @Override
         public void handle(Event event) {
-            
+
             Object source = event.getTarget();
             Button tardis = (Button) source;
             play.Print();
             doctor = getX(tardis);
             who = getY(tardis);
             boolean limpiarult = false;
-            boolean sonic=true;
+            boolean sonic = true;
             System.out.println("Aqui dougs");
             System.out.println(superman + " " + batman);
+            System.out.println("azules " + play.contarAzules());
+            System.out.println("rojos " + play.contarRojas());
+            if (play.tablero[who][doctor].getTest().equals("X")) {
+                tipo.setText("------");
+                ataque.setText("------");
+                vida.setText("------");
+                escudo.setText("------");
+            } else {
+                switch (play.tablero[who][doctor].getTest()) {
+                    case "V":
+                        tipo.setText("Vampichoco");
+                        break;
+                    case "M":
+                        tipo.setText("Muerte");
+                        break;
+                    case "Z":
+                        tipo.setText("Zombie");
+                        break;
+                    case "H":
+                        tipo.setText("Hombre Lobo");
+                        break;
+                }
+                ataque.setText("" + play.tablero[who][doctor].getAtaque());
+                vida.setText("" + play.tablero[who][doctor].getVida());
+                escudo.setText("" + play.tablero[who][doctor].getEscudo());
+            }
 
             System.out.println("entro");
             if (ult.getGraphic() != ((Node) blank)) {
                 if (play.tablero[superman][batman].getTest().equals(f.getTest())) {
-                    
+
                     try {
                         if (play.turno % 2 != 0 && play.tablero[superman][batman].getColor() == "azul" || play.turno % 2 == 0 && play.tablero[superman][batman].getColor() == "rojo") {
-                            if (play.turno % 2 != 0&&sonic) {
-                                System.out.println("Turno 1");
-                                
-
-                            } 
-                            
-                           if (play.turno % 2 ==0&&sonic){
-                                System.out.println("Turno 2");
-                                
-
-                            }
 
                             if (play.tablero[superman][batman].getColor().equals(returntardis())) {
 
                             } else {
                                 Menu();
                                 play.Print();
-                                sonic=true;
+                                sonic = true;
                             }
 
                         }
@@ -299,7 +415,7 @@ public class FXMLDocumentController implements Initializable {
                             close.delete();
                             ult = new Button("", blank);
                             System.out.println("yay");
-                            sonic=false;
+                            sonic = false;
                         }
 
                     } catch (Exception ex) {
@@ -312,48 +428,32 @@ public class FXMLDocumentController implements Initializable {
 
                     if (play.tablero[who][doctor].getTest().equals("X")) {
                         if (files2.exists() && play.tablero[superman][batman] instanceof HombreLobo) {
-                             System.out.println("nimer");
+
                             play.tablero[superman][batman].ataqueEspecial(play, botones, tardis, superman, batman);
-                            play.turno += 1;
-                            Ruletamaster();
+                            IncTurno();
                             files2.delete();
                         }
-                        
+
                         if (files2.exists() && play.tablero[superman][batman] instanceof Muerte) {
-                             System.out.println("nimer");
+
                             play.tablero[superman][batman].ataqueEspecial(play, botones, tardis, superman, batman);
-                            play.turno += 1;
-                            Ruletamaster();
+                            IncTurno();
                             files2.delete();
                         }
 
                         if (files3.exists()) {
 
-                            if (true) {
-                               play.tablero[superman][batman].mover(play, botones, tardis, superman, batman);
-                                System.out.println("me movi");
+                            if (play.tablero[superman][batman].mover(play, botones, tardis, superman, batman)) {
+
                                 ult = new Button("", blank);
-                                play.turno+=1;
-                                Ruletamaster();
-                                
-                                
-                                
+                                IncTurno();
+
                             }
                             files3.delete();
                         }
 
                         return;
                     }
-                    /*if (files3.exists()) {
-                            
-                           
-                            
-                     if (Mover()) {
-                     System.out.println("me movi");
-                     ult = new Button("", blank);
-                     }
-                     files3.delete();
-                     }*/
 
                     if (botones[doctor][who].getGraphic() != ((Node) blank)) {
 
@@ -364,7 +464,7 @@ public class FXMLDocumentController implements Initializable {
                             if (files.exists()) {
 
                                 limpiarult = true;
-                                play.turno += 1;
+                                IncTurno();
                                 files.delete();
                                 botones[doctor][who].disarm();
 
@@ -373,10 +473,6 @@ public class FXMLDocumentController implements Initializable {
 
                                 int life = play.tablero[who][doctor].getVida();
                                 int escudo = play.tablero[who][doctor].getEscudo();
-
-                                System.out.println("Vida antes: " + life);
-                                System.out.println("Escudo antes: " + escudo);
-                                System.out.println("Ataque antes: " + ataque);
 
                                 if (ataque > escudo) {
                                     ataque = ataque - escudo;
@@ -401,13 +497,15 @@ public class FXMLDocumentController implements Initializable {
 
                                 if (play.tablero[who][doctor].getVida() <= 0) {
                                     botones[doctor][who].setGraphic((Node) blank);
+                                    play.tablero[who][doctor] = play.tablero[who][doctor] = new Vampiro("");
+                                    play.tablero[who][doctor].setTest("X");
                                 }
-                                Ruletamaster();
+
                             }
 
-                            if (files2.exists()) {
+                            if (files2.exists() && !(play.tablero[superman][batman] instanceof HombreLobo)) {
                                 limpiarult = true;
-                                play.turno += 1;
+                                IncTurno();
                                 files2.delete();
                                 System.out.println("Ataque SPECIAL");
                                 //if(play.tablero[who][doctor].getTest().equals("H")){
@@ -415,7 +513,6 @@ public class FXMLDocumentController implements Initializable {
                                 if (play.tablero[who][doctor].getVida() <= 0) {
                                     botones[doctor][who].setGraphic((Node) blank);
                                 }
-                                Ruletamaster();;
 
                                 //Aqui special attack alex
                             }
@@ -466,34 +563,7 @@ public class FXMLDocumentController implements Initializable {
                 }
             }
 
-            //no me funciona el special del lobo..
-                /*
-             if(play.tablero[superman][batman].getTest().equals("H")){
-             System.out.println("plss");
-             if(ult.getGraphic()!=((Node)blank)){
-             posx=batman- doctor;
-             posy= superman-who;
-             if(posx<0)
-             posx=posx *(-1);
-             if(posy<0)
-             posy= posy*(-1);
-
-             if((posx <=2)&& (posy <=2)){
-
-             if(botones[doctor][who].getGraphic()==((Node)blank)){
-
-             botones[doctor][who].setGraphic(ult.getGraphic());
-             play.tablero[who][doctor]=play.tablero[superman][batman];
-             play.tablero[superman][batman]=null;
-             ult.setGraphic(((Node)blank));
-             play.Print();
-             return;
-             }
-             }
-             }
-             System.out.println("falso baby");
-             }
-             */
         }
+
     };
 }

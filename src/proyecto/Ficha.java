@@ -102,7 +102,7 @@ public abstract class Ficha {
         return true;
     }
 
-    public void mover(LogicaVampire play, Button[][] botones, Button tardis, int superman, int batman) {
+    public boolean mover(LogicaVampire play, Button[][] botones, Button tardis, int superman, int batman) {
         int doctor = getX(tardis, botones);
         int who = getY(tardis, botones);
         int posx = batman - doctor;
@@ -117,7 +117,10 @@ public abstract class Ficha {
 
         if ((posx <= 1) && (posy <= 1)) {
                 mover(play, botones, doctor, who, superman, batman);
+                return true;
         }
+        
+        return false;
     }
 
     public abstract void ataqueEspecial(LogicaVampire play, Button[][] botones, Button tardis, int superman, int batman);
