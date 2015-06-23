@@ -79,7 +79,7 @@ public class Player implements Mando {
                     player2.readInt();
 
                 } else {
-                    player2.readUTF();
+                 
                     player2.readUTF();
                     player2.readBoolean();
                     player2.readInt();
@@ -108,12 +108,13 @@ public class Player implements Mando {
             RandomAccessFile player2= new RandomAccessFile("player", "rw");
             player2.seek(0);
             long pos = 0;
+            
             while (player2.getFilePointer() < player2.length()) {
                   if (player2.readUTF().equals(nombre)) {
                    return pos;
 
                 } else {
-                    player2.readUTF();
+                   
                     player2.readUTF();
                     player2.readBoolean();
                     player2.readInt();

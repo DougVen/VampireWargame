@@ -73,7 +73,7 @@ public class MenuController implements Initializable {
                 player2.readUTF();
                 String t = player2.readUTF();
                 if (t.equals(password.getText())) {
-                    Parent root1 = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+                    Parent root1 = FXMLLoader.load(getClass().getResource("Menu2.fxml"));
                     Stage stage = new Stage();
                     stage.setTitle("Juego");
                     stage.setScene(new Scene(root1));
@@ -108,9 +108,10 @@ public class MenuController implements Initializable {
         if (newUsername.getText() != null && newPassword.getText() != null) {
 
             if (player.search(newUsername.getText())== -1) {
+                
                 players.add(new Player(newUsername.getText(), newPassword.getText()));
                 player.crearUsuario(newUsername.getText(), newPassword.getText());
-                Parent root1 = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+                Parent root1 = FXMLLoader.load(getClass().getResource("Menu2.fxml"));
                 Stage stage = new Stage();
                 stage.setTitle("Juego");
                 stage.setScene(new Scene(root1));
