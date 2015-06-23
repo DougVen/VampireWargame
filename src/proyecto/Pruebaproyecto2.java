@@ -12,7 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import proyecto.Player;
 
 /**
  *
@@ -22,8 +22,7 @@ public class Pruebaproyecto2 extends Application {
    
     @Override
     public void start(Stage stage) throws Exception {
-        
-        Parent menu = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent menu = FXMLLoader.load(getClass().getResource("Menu.fxml"));
          
         Scene menuscene = new Scene(menu);
         

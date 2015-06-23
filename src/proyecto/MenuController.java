@@ -9,6 +9,7 @@ package proyecto;
  *
  * @author jose
  */
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.net.URL;
 import java.util.ArrayList;
@@ -38,13 +39,13 @@ import javafx.stage.StageStyle;
  *
  * @author usuario
  */
-public class MenuController implements Initializable{
+public class MenuController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
-   ArrayList<Player> players= new ArrayList<>();
-    
+    ArrayList<Player> players = new ArrayList<>();
+
     @FXML
     private Button login;
     public TextField username;
@@ -54,82 +55,84 @@ public class MenuController implements Initializable{
     private Label warning;
     public Label background;
     private Image img2 = new Image(getClass().getResourceAsStream("castlevania.jpg"));
+    public Player player=new Player("","");
     
-    
-    @FXML
-    public void Crear(){
 
-     
-    }
-    
-    public void Login() throws Exception{
-        
-         if(username.getText() !=null && password.getText() != null){
-             if(search()){
-               Parent root1 = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-               Stage stage = new Stage();
-               stage.setTitle("Juego");
-               stage.setScene(new Scene(root1));
-               stage.show();
-             }    
-             
-                  
-         }        
-         
-          System.out.println("Usuario Incorrecto o no existe");
-        
-    }
-    
-   public boolean search(){
-       
-       for(Player p : players){
-           if(username.getText().equals(p.getUsername()) || password.getText().equals(p.getPassword())){
-               return true;
-           }       
-       }      
-       return false;  
-   }
-    
     @FXML
-    public void Salir(){
+    public void Crear() {
+       
+    }
+
+    public void Login() throws Exception {
+       
+        
+        if (username.getText() != null && password.getText() != null) {
+            if (player.search(username.getText()) != -1) {
+                RandomAccessFile player2= new RandomAccessFile("player", "rw");
+                player2.seek(player.search(username.getText()));
+                player2.readUTF();
+                String t = player2.readUTF();
+                if (t.equals(password.getText())) {
+                    Parent root1 = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+                    Stage stage = new Stage();
+                    stage.setTitle("Juego");
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                } else {
+                    System.out.println("Usuario Incorrecto o no existe");
+                }
+            }
+
+        }
+
+    }
+
+    public boolean search() {
+
+        for (Player p : players) {
+            if (username.getText().equals(p.getUsername()) || password.getText().equals(p.getPassword())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @FXML
+    public void Salir() {
         exit();
     }
-    
+
     @FXML
-    public void CrearJugador(){
+    public void CrearJugador() throws IOException {
         boolean flag = true;
-        if(newUsername.getText()!=null&&newPassword.getText()!= null){
-           for(Player p : players){
-            if(newUsername.getText().equals(p.getUsername()) && newPassword.getText().equals(p.getPassword())){
-                System.out.println("el Jugador ya existe");
-                flag=false;
+        if (newUsername.getText() != null && newPassword.getText() != null) {
+
+            if (player.search(newUsername.getText())== -1) {
+                players.add(new Player(newUsername.getText(), newPassword.getText()));
+                player.crearUsuario(newUsername.getText(), newPassword.getText());
+                Parent root1 = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("Juego");
+                stage.setScene(new Scene(root1));
+                stage.show();
             }
-            
-           }
-           if(flag==true)
-           players.add(new Player(newUsername.getText(),newPassword.getText()));
- 
-        }else{
+
+        } else {
             System.out.println("Agregue usuario y/o Contraseña");
         }
-        
+
         newUsername.setText(null);
         newPassword.setText(null);
-        
+
     }
-    
+
     @FXML
-    public void Imprimir(){
-        for(Player p: players){
-            System.out.println("-------------");
-            System.out.println(p.getUsername());
-            System.out.println("-------------");
-        }
-        
-        
+    public void Imprimir() {
+       
+        player.print();
+
     }
-    
-  
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -138,7 +141,6 @@ public class MenuController implements Initializable{
         username.setText(null);
         password.setText(null);
         background.setGraphic(new ImageView(img2));
-    }    
-    
-}
+    }
 
+}

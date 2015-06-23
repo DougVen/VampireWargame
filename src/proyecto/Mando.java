@@ -14,20 +14,15 @@ import java.util.RandomAccess;
  */
 public interface Mando {
 
-    /**
-     *
-     */
+    public void crearUsuario(String nombre, String pass);
 
-    
-   public void crearUsuario(String nombre, String pass);
-   
-   public void eliminar();
-   
-   public void guardarPartida();
-   
-   public void cargar();
-   
-   
-   
-   
+    public void eliminar(String nombre, String pass);
+
+    public void guardarPartida();
+
+    public void cargar();
+    public void print();
+
+    public long search(String nombre);
+
 }

@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
 public class LogicaVampire {
     public int turno=1;
     public Ficha[][] tablero;
-
+  
 
     public LogicaVampire() {
         tablero=new Ficha[6][6];
