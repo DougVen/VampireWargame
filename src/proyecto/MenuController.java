@@ -9,8 +9,10 @@ package proyecto;
  *
  * @author jose
  */
+import java.io.RandomAccessFile;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.RandomAccess;
 import java.util.ResourceBundle;
 import static javafx.application.Platform.exit;
 import javafx.fxml.FXML;
@@ -36,7 +38,7 @@ import javafx.stage.StageStyle;
  *
  * @author usuario
  */
-public class MenuController implements Initializable {
+public class MenuController implements Initializable{
 
     /**
      * Initializes the controller class.
