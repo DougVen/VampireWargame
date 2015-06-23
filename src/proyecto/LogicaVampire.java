@@ -14,8 +14,9 @@ import java.util.stream.IntStream;
  * @author usuario
  */
 public class LogicaVampire {
-    protected int turno=1;
+    public int turno=1;
     public Ficha[][] tablero;
+
 
     public LogicaVampire() {
         tablero=new Ficha[6][6];
@@ -32,9 +33,10 @@ public class LogicaVampire {
             }System.out.println("");         
             
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 2; i++) {
             System.out.println("");
         }
+       
     }
         
     public int Ruleta(){
@@ -63,6 +65,32 @@ public class LogicaVampire {
             case 3:
                 break;
         }
+        
+    }
+    
+    public int contarAzules(){
+        int azul=0;
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                if(tablero[i][j].getColor().equals("azul")){
+                    azul+=1;
+                }
+            }
+        }
+        return azul;
+        
+    }
+    
+    public int contarRojas(){
+        int rojas=0;
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                if(tablero[i][j].getColor().equals("rojo")){
+                    rojas+=1;
+                }
+            }
+        }
+        return rojas;
         
     }
 }

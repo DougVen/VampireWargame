@@ -19,18 +19,18 @@ import javafx.stage.Stage;
  * @author jose
  */
 public class Pruebaproyecto2 extends Application {
-    
+   
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
+        Parent menu = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+         
+        Scene menuscene = new Scene(menu);
         
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        
-        
+        stage.setScene(menuscene);
+
         stage.show();
+        
     }
 
     /**
