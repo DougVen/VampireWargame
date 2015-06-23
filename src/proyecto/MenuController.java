@@ -66,7 +66,8 @@ public class MenuController implements Initializable{
         
          if(username.getText() !=null && password.getText() != null){
              if(search()){
-               Parent root1 = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+               Parent root1 = FXMLLoader.load(getClass().getResource("menu2.fxml"));
+               
                Stage stage = new Stage();
                stage.setTitle("Juego");
                stage.setScene(new Scene(root1));
